@@ -46,7 +46,7 @@ function Bakgrunn() {
         pattern="dot"
         wave="silk"
         spacing={9}
-        markSize={0.75}
+        markSize={0.42}
         depth={0.95}
         light={0}
         shine={0.85}
