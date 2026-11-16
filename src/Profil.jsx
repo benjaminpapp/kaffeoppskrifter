@@ -97,7 +97,7 @@ export default function Profil({ o }) {
           <svg
             width={bredde} height={hoyde} role="img" aria-label={sammendrag}
             tabIndex={0} onKeyDown={tast}
-            onPointerMove={fraPeker} onPointerLeave={() => setAktiv(null)}
+            onPointerDown={fraPeker} onPointerMove={fraPeker} onPointerLeave={() => setAktiv(null)}
             onFocus={() => setAktiv((v) => (v === null ? 0 : v))} onBlur={() => setAktiv(null)}
           >
             {yMerker.map((v) => (

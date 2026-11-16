@@ -83,10 +83,11 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
   padding-top:26px;padding-bottom:22px;
 }
 .merke{
+  display:inline-flex;align-items:center;min-height:44px;
   font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;
   font-variation-settings:"SOFT" 25,"WONK" 1,"opsz" 24;letter-spacing:-.015em;
 }
-.merke[aria-current="page"]{box-shadow:0 2px 0 var(--kopper);}
+.merke[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--kopper);}
 footer{
   display:flex;justify-content:space-between;
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
@@ -133,17 +134,21 @@ h1{
 .utstyr-rad dd span{color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;}
 
 /* ---------- filtre: tekstbrytere, ikke piller ---------- */
-.filtre{display:flex;flex-direction:column;gap:12px;margin-bottom:38px;}
-.filter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.filter .stempel{margin-right:8px;min-width:52px;}
+.filtre{display:flex;flex-direction:column;gap:4px;margin-bottom:34px;}
+.filter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.filter .stempel{margin-right:4px;min-width:52px;}
+/* 44px høy og 8px fra naboen: dette betjenes med én hånd mens den andre
+   holder kjelen, så brytere på 28px med 6px mellomrom var for trangt. */
 .bryter{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
-  letter-spacing:.04em;color:var(--ink-sub);padding:4px 2px;
-  border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;
+  letter-spacing:.04em;color:var(--ink-sub);padding:0 9px;
+  min-height:44px;display:inline-flex;align-items:center;
+  box-shadow:inset 0 -1.5px 0 transparent;
+  transition:color .2s,box-shadow .2s;
 }
-.bryter:hover{color:var(--ink);border-bottom-color:var(--rule-sterk);}
-.bryter.on{color:var(--ink);border-bottom-color:var(--kopper);}
-.bryter:active{transform:translateY(1px);}
+.bryter:hover{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--rule-sterk);}
+.bryter.on{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--kopper);}
+.bryter:active{background:var(--kopper-vask);}
 
 /* ---------- journalrader ---------- */
 .gruppe{margin-bottom:40px;}
@@ -219,9 +224,12 @@ h1{
 
 /* ---------- oppskrift ---------- */
 .oppskrift{padding-top:6px;}
+/* Primær tilbakenavigasjon — må være treffbar med tommelen, ikke 18px høy. */
 .tilbake{
-  display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;
-  font-size:11.5px;letter-spacing:.06em;color:var(--ink-sub);margin-bottom:30px;
+  display:inline-flex;align-items:center;min-height:44px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12.5px;letter-spacing:.06em;color:var(--ink-sub);
+  padding:0 10px;margin:0 0 18px -10px;
   transition:color .2s;
 }
 .tilbake::before{content:"\2190 ";}
@@ -358,8 +366,13 @@ h1{
 .notater .stempel{margin-bottom:10px;}
 .notater p{margin:0;max-width:var(--maaleflate);text-wrap:pretty;}
 .kilde{font-size:14px;margin-top:24px;color:var(--ink-sub);}
-.kilde a{border-bottom:1px solid var(--rule-sterk);transition:border-color .2s;}
-.kilde a:hover{border-color:var(--kopper);}
+/* Negativ margin motvirker paddingen: treffflaten blir 44px uten at
+   teksten flytter seg eller linjeavstanden endres. */
+.kilde a{
+  display:inline-block;padding:13px 6px;margin:-13px -6px;
+  box-shadow:inset 0 -1px 0 var(--rule-sterk);transition:box-shadow .2s;
+}
+.kilde a:hover{box-shadow:inset 0 -1px 0 var(--kopper);}
 .kilde a::after{content:" \2197";}
 
 .tom{

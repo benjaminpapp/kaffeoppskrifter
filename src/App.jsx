@@ -78,7 +78,7 @@ function Oversikt() {
     [niva, modus]
   )
 
-  // Smak sorterer, den filtrerer ikke: med ni oppskrifter gir terskler fort
+  // Smak sorterer, den filtrerer ikke: med så få oppskrifter gir terskler fort
   // null treff (ingen har f.eks. både syre og sødme på 4+), og en tom side
   // hjelper ingen. Her flyttes det du vil ha øverst i stedet.
   const rangert = useMemo(
@@ -92,8 +92,8 @@ function Oversikt() {
         <p className="stempel">Hario Switch · 1Zpresso ZP6 · {oppskrifter.length} oppskrifter</p>
         <h1>Bryggejournal</h1>
         <p className="lead">
-          Ni pour-over-oppskrifter, sortert fra lett til avansert. Tidene er faste tidspunkt fra første helling,
-          og hver vekt er totalvekt på vekta — ikke mengden du heller i det steget.
+          Alle oppskriftene brygges på Hario Switch. Tidene er faste tidspunkt fra første helling, og hver vekt
+          er totalvekt på vekta — ikke mengden du heller i det steget.
         </p>
       </header>
 
