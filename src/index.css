@@ -5,7 +5,7 @@
    unngått: det er standardpaletten enhver generator når etter på en
    kaffebrief, og siden ble bygget nettopp for å slippe standarder.
    Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
-   Bodoni Moda brukes kun i ordmerket.
+   Bodoni Moda brukes i ordmerket og gruppeoverskriftene.
 
    Rust er 5,16:1 mot skifer og 5,13:1 mot mørk flate, så aksenten
    holder AA som tekst i begge moduser.
@@ -88,8 +88,8 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 }
 .merke{
   display:inline-flex;align-items:center;min-height:44px;
-  /* Eneste stedet serifen brukes: ordmerket. Resten av siden holder
-     seg til Archivo, så serifen er et merke og ikke et tema. */
+  /* Serifen brukes to steder: ordmerket og gruppeoverskriftene. Resten
+     av siden holder seg til Archivo. */
   font-family:"Bodoni Moda",Didot,Georgia,serif;
   font-size:clamp(42px,7vw,66px);font-weight:600;letter-spacing:-.01em;line-height:1;
 }
@@ -110,7 +110,7 @@ footer{
 }
 
 /* ---------- hero ---------- */
-.hero{padding:4px 0 30px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+.hero{padding:38px 0 32px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
 /* Ingressen står alene her nå, så den midtstilles mot siden. Målelinja er
    kortere enn ellers: midtstilt tekst blir tyngre å lese på full bredde. */
 .hero .lead{
@@ -175,8 +175,8 @@ h1{
    lista, ikke en etikett, så de har sin egen skala nå. */
 .gruppe-tittel{
   display:flex;align-items:baseline;gap:12px;margin:0 0 6px;
-  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
-  font-size:26px;font-weight:700;font-stretch:112%;letter-spacing:-.015em;
+  font-family:"Bodoni Moda",Didot,Georgia,serif;
+  font-size:28px;font-weight:600;letter-spacing:0;
   color:var(--ink);text-transform:none;
 }
 .gruppe-tall{
