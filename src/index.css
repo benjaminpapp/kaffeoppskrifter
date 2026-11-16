@@ -50,8 +50,10 @@
 
 *{box-sizing:border-box;}
 html{background:var(--ground);scroll-behavior:smooth;}
+/* Grunnfargen ligger på html. body må være gjennomsiktig, ellers males
+   den over .bakgrunn, som har negativ z-index. */
 body{
-  margin:0;background:var(--ground);color:var(--ink);
+  margin:0;background:transparent;color:var(--ink);
   font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
@@ -105,6 +107,34 @@ footer{
   letter-spacing:.06em;color:var(--ink-sub);
   margin-top:72px;padding-top:20px;padding-bottom:48px;
   border-top:1px solid var(--rule);
+}
+
+/* ---------- bakgrunn ---------- */
+/* Fast bak hele siden. z-index -1 legger den over body-bakgrunnen, men
+   under alt innhold. pointer-events:none, og komponenten lytter på
+   window, så markøreffekten virker likevel.
+
+   Masken tar styrken nesten helt bort over innholdskolonnen og lar
+   mønsteret stå ute på sidene. fade="center" gjør det samme radielt,
+   men kolonnen er rektangulær, så masken følger faktisk bredden. */
+.bakgrunn{
+  position:fixed;inset:0;z-index:-1;pointer-events:none;
+  --halv:calc(var(--maxw) / 2);
+  --mykt:90px;
+  --maske:linear-gradient(to right,
+    #000 0,
+    #000 calc(50% - var(--halv) - var(--mykt)),
+    rgba(0,0,0,.08) calc(50% - var(--halv) + 20px),
+    rgba(0,0,0,.08) calc(50% + var(--halv) - 20px),
+    #000 calc(50% + var(--halv) + var(--mykt)),
+    #000 100%);
+  -webkit-mask-image:var(--maske);
+  mask-image:var(--maske);
+}
+/* Under kolonnebredden er det ingen «sider» igjen å vise mønsteret i, så
+   da dempes hele flaten i stedet for å maskere bort midten. */
+@media (max-width:980px){
+  .bakgrunn{-webkit-mask-image:none;mask-image:none;opacity:.35;}
 }
 
 /* Synlig for skjermlesere, ikke for øyet. */

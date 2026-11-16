@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import { oppskrifter, utstyr, NIVAER, MODUSER, ratio, tall } from "./data"
 import Oppskrift from "./Oppskrift"
 import { Prikker, ModusGlyf, KARAKTER } from "./ui"
+import PatternWaves from "./PatternWaves"
 
 // Enkel hash-ruting (#/o/<slug>) — fungerer på GitHub Pages uten 404-triks.
 function useHash() {
@@ -12,6 +13,54 @@ function useHash() {
     return () => window.removeEventListener("hashchange", on)
   }, [])
   return hash
+}
+
+// Bakgrunnen får grunnfargen fra temaet, ikke en hardkodet verdi. Shaderen
+// avgjør selv om den tegner lyst-på-mørkt eller omvendt ut fra den, så en
+// fast #000 ville gjort lys modus feil.
+function useGrunnfarge() {
+  const [farge, setFarge] = useState("#11161b")
+  useEffect(() => {
+    const les = () =>
+      setFarge(getComputedStyle(document.documentElement).getPropertyValue("--ground").trim() || "#11161b")
+    les()
+    const mq = window.matchMedia("(prefers-color-scheme: dark)")
+    mq.addEventListener("change", les)
+    return () => mq.removeEventListener("change", les)
+  }, [])
+  return farge
+}
+
+function Bakgrunn() {
+  const grunn = useGrunnfarge()
+  return (
+    <div className="bakgrunn" aria-hidden="true">
+      <PatternWaves
+        preset="silk"
+        color="#b34c01"
+        backgroundColor={grunn}
+        fade="center"
+        interactive
+        cursorSize={50}
+        cursorStrength={0.6}
+        pattern="dot"
+        wave="silk"
+        spacing={9}
+        markSize={0.75}
+        depth={0.95}
+        light={0}
+        shine={0.85}
+        contrast={1.2}
+        speed={0.35}
+        scale={1.45}
+        direction={20}
+        opacity={1}
+        fadeSize={0.5}
+        intro
+        paused={false}
+      />
+    </div>
+  )
 }
 
 const NIVA_TEKST = { lett: "Lett", middels: "Middels", avansert: "Avansert" }
@@ -190,6 +239,7 @@ export default function App() {
 
   return (
     <>
+      <Bakgrunn />
       <a className="hopp" href="#main">Hopp til innholdet</a>
       <nav className="nav">
         <a className="merke" href="#/" aria-current={slug ? undefined : "page"}>
