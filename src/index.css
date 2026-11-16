@@ -78,10 +78,12 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
 }
 
 /* ---------- ramme ---------- */
-.nav,main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+/* Navigasjonen følger ikke innholdskolonnen: ordmerket står helt ute
+   til venstre, som en merking på utsiden av instrumentet. */
 .nav{
-  display:flex;justify-content:space-between;align-items:baseline;
-  padding-top:26px;padding-bottom:22px;
+  display:flex;justify-content:flex-start;align-items:center;
+  padding:18px 24px 14px;
 }
 .merke{
   display:inline-flex;align-items:center;min-height:44px;
