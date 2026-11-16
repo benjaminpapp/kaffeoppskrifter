@@ -1,0 +1,30 @@
+navn: Double
+niva: middels
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: En stor brygg i fire hellinger med reverse i tredje helling.
+kaffe: 35
+vann: 500
+temp: ca. 93 °C
+malegrad: 5.8
+tid: 2:30–3:00
+karakter:
+  syre: 3
+  sodme: 3
+  fylde: 3
+  klarhet: 3
+steg:
+  - tid: "0:00"
+    tekst: "Bloom: hell opp til **100 g**"
+  - tid: "0:30"
+    tekst: Hell opp til **250 g**
+  - tid: "1:00"
+    tekst: Hell opp til **350 g**, og gjør reverse
+  - tid: "1:30"
+    tekst: Hell opp til **500 g**
+  - tid: "2:45"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Halv versjon: 17,5 g kaffe og 50 → 125 → 175 (reverse) → 250 g på samme tider.
+  Med 500 g blir Switchen full, så hell rolig.

@@ -1,0 +1,27 @@
+navn: Hario offisiell
+niva: lett
+modus: lukket
+brygger: Hario Switch (lukket)
+beskrivelse: Dette er den enkleste av alle. Én helling, la det trekke, og åpne. Koppen blir fyldig og tilgivende.
+kaffe: 20
+vann: 240
+temp: ca. 93 °C
+malegrad: 6.0
+tid: ca. 2:45
+karakter:
+  syre: 2
+  sodme: 3
+  fylde: 5
+  klarhet: 2
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**, hell opp til **240 g**
+  - tid: "2:00"
+    tekst: "**Åpne** Switch"
+  - tid: "2:45"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: God til mørkere bryggekaffe og når du vil ha en sikker kopp uten å tenke.
+kilde:
+  navn: Crema
+  url: https://www.crema.fi/en/products/hario/immersion-dripper-switch-ceramic-02/13282

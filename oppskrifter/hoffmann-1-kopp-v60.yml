@@ -1,0 +1,33 @@
+navn: James Hoffmann 1-kopp V60
+niva: middels
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: Fem små hellinger som holder temperaturen oppe. Ren og søt kopp med mye klarhet.
+kaffe: 15
+vann: 250
+temp: Nykokt (ca. 100 °C)
+malegrad: 4.8
+tid: ca. 3:00
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 2
+  klarhet: 5
+steg:
+  - tid: "0:00"
+    tekst: "Bloom: hell opp til **50 g**, og virvle forsiktig"
+  - tid: "0:45"
+    tekst: Hell opp til **100 g**
+  - tid: "1:10"
+    tekst: Hell opp til **150 g**
+  - tid: "1:30"
+    tekst: Hell opp til **200 g**
+  - tid: "1:50"
+    tekst: Hell opp til **250 g**, og virvle forsiktig ved 2:00
+  - tid: "3:00"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: Forvarm Switchen godt, for en liten dose mister fort varme. Smak er viktigere enn nøyaktig drawdown-tid.
+kilde:
+  navn: AeroPrecipe
+  url: https://aeroprecipe.com/recipes/james-hoffmann-better-1-cup-v60-technique

@@ -1,0 +1,34 @@
+navn: Tetsu Kasuya 4:6
+niva: avansert
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: Vinneroppskriften fra World Brewers Cup 2016. De to første hellingene (40 %) styrer syre mot sødme, de tre siste (60 %) styrer styrken.
+kaffe: 20
+vann: 300
+temp: 92 °C
+malegrad: 6.5
+tid: "3:30"
+karakter:
+  syre: 3
+  sodme: 3
+  fylde: 3
+  klarhet: 4
+steg:
+  - tid: "0:00"
+    tekst: Hell opp til **60 g**
+  - tid: "0:45"
+    tekst: Hell opp til **120 g**
+  - tid: "1:30"
+    tekst: Hell opp til **180 g**
+  - tid: "2:15"
+    tekst: Hell opp til **240 g**
+  - tid: "3:00"
+    tekst: Hell opp til **300 g**
+  - tid: "3:30"
+    tekst: Ta av Switchen, og koppen er ferdig
+notater: >-
+  Hver helling bør ta rundt 10 sek. Søtere kopp: gjør første helling mindre enn andre (f.eks. 50 + 70 g).
+  Mer syre: gjør første helling størst. Sterkere kopp: del de siste 180 g i flere hellinger.
+kilde:
+  navn: Ninoma
+  url: https://ninoma.com/blogs/go-nippon-project/230310

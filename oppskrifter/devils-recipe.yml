@@ -1,0 +1,32 @@
+navn: Devil's Recipe (Tetsu Kasuya)
+niva: avansert
+modus: hybrid
+brygger: "Hario Switch (hybrid: åpen → lukket → åpen)"
+beskrivelse: Åpen perkolering først, så lukket immersion i kjøligere vann. Søt og klar kopp med lite bitterhet.
+kaffe: 20
+vann: 280
+temp: 90–95 °C, så 70 °C
+malegrad: 5.0
+tid: "3:00"
+karakter:
+  syre: 2
+  sodme: 5
+  fylde: 4
+  klarhet: 4
+steg:
+  - tid: "0:00"
+    tekst: Switch **åpen**, hell opp til **60 g** (90–95 °C)
+  - tid: "0:30"
+    tekst: Switch åpen, hell opp til **120 g**
+  - tid: "1:15"
+    tekst: Switch **lukket**, hell opp til **280 g** med 70 °C vann
+  - tid: "1:45"
+    tekst: "**Åpne** Switch og la det renne"
+  - tid: "3:00"
+    tekst: Ferdig. Lukk Switchen hvis det fortsatt renner
+notater: >-
+  Kjøl vannet mens den andre hellingen renner, for eksempel ved å fylle kaldt vann i kjelen.
+  Bitter eller tørr kopp: mal grovere (5,2–5,4). Sur eller tynn: mal finere (4,7–4,8).
+kilde:
+  navn: Outpost Coffee
+  url: https://outpostcoffee.com/blogs/brew-at-home/tetsu-kasuyas-hario-switch-recipe-for-perfect-coffee

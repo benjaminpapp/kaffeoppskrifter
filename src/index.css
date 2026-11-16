@@ -1,0 +1,129 @@
+/* =====================================================================
+   Kaffeoppskrifter — samme design-tokens som porteføljen
+   (mørk palett, emerald-aksent, Schibsted Grotesk + Spline Sans Mono).
+   ===================================================================== */
+:root{
+  --ink:#e8eef5;
+  --paper:#070b12;
+  --card:#0e141d;
+  --line:#233042;
+  --muted:#3a4a5e;
+  --muted2:#141c28;
+  --accent:#36e0a0;
+  --accent-ink:#6cf2c0;
+  --accent-contrast:#04130c;
+  --accent-soft:#0c2419;
+  --sub:#93a1b4;
+  --maxw:880px;
+}
+*{box-sizing:border-box;}
+html{background:var(--paper);}
+body{margin:0;color:var(--ink);font-family:"Schibsted Grotesk",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;line-height:1.6;
+  background:radial-gradient(1200px 600px at 100% -10%,rgba(54,224,160,.08),transparent 60%);}
+.mono{font-family:"Spline Sans Mono",monospace;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:4px;}
+.sub{color:var(--sub);}
+
+/* ---------- ramme ---------- */
+.nav,main,footer{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+.nav{display:flex;justify-content:space-between;align-items:center;height:64px;font-size:13px;}
+.nav .brand{font-weight:700;font-size:16px;letter-spacing:-.01em;}
+.nav .brand span{color:var(--accent);}
+.nav a.sub:hover{color:var(--accent-ink);}
+footer{padding-top:60px;padding-bottom:40px;font-size:12px;}
+
+.eyebrow{font-family:"Spline Sans Mono",monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent-ink);margin:0 0 10px;font-weight:500;}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.03em;margin:0 0 14px;font-weight:700;}
+.lead{color:var(--sub);font-size:17px;max-width:62ch;margin:0;}
+.hero{padding:44px 0 26px;}
+
+/* ---------- utstyr ---------- */
+.utstyr{border:1px solid var(--line);border-radius:13px;background:var(--card);margin:6px 0 26px;}
+.utstyr summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;flex-direction:column;gap:2px;}
+.utstyr summary::-webkit-details-marker{display:none;}
+.utstyr summary .eyebrow{margin:0;}
+.utstyr summary .eyebrow::after{content:" +";}
+.utstyr[open] summary .eyebrow::after{content:" –";}
+.utstyr summary .sub{font-size:13.5px;}
+.utstyr dl{margin:0;padding:0 18px 8px;}
+.utstyr-rad{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--muted2);}
+.utstyr-rad dt{font-size:12px;color:var(--sub);padding-top:2px;}
+.utstyr-rad dd{margin:0;display:flex;flex-direction:column;gap:2px;font-size:14.5px;}
+.utstyr-rad dd span{color:var(--sub);}
+
+/* ---------- filtre ---------- */
+.filtre{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+.filter{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{font-family:"Spline Sans Mono",monospace;font-size:12px;padding:6px 13px;border-radius:999px;
+  border:1.5px solid var(--line);background:transparent;color:var(--sub);transition:all .15s;}
+.pill:hover{border-color:var(--muted);color:var(--ink);}
+.pill.on{background:var(--accent);border-color:var(--accent);color:var(--accent-contrast);}
+
+/* ---------- kort ---------- */
+.gruppe{margin-top:34px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px;
+  display:flex;flex-direction:column;gap:12px;transition:border-color .15s,transform .15s;}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);}
+.card .cap{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.card .cap strong{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;}
+.card .beskr{margin:0;color:var(--sub);font-size:14px;line-height:1.5;}
+.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;color:var(--sub);}
+.tag{font-family:"Spline Sans Mono",monospace;font-size:11px;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--muted);color:var(--sub);white-space:nowrap;}
+.tag.modus-hybrid{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft);}
+.tag.modus-lukket{border-color:#5fd8ff55;color:#9fe6ff;}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;border-top:1px solid var(--muted2);padding-top:10px;}
+.mini-rad{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--sub);}
+.tom{margin-top:30px;}
+
+/* ---------- karakter-prikker ---------- */
+.prikker{display:inline-flex;gap:4px;}
+.prikker .p{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);}
+.prikker .p.on{background:var(--accent);border-color:var(--accent);}
+
+/* ---------- oppskrift ---------- */
+.oppskrift{padding-top:26px;}
+.tilbake{display:inline-block;font-size:12.5px;margin-bottom:26px;}
+.tilbake:hover{color:var(--accent-ink);}
+.params{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:28px 0 14px;}
+.params div{background:var(--card);padding:12px 14px;}
+.params dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);}
+.params dd{margin:2px 0 0;font-size:16px;font-weight:600;}
+.karakter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px;}
+.karakter div{display:flex;flex-direction:column;gap:6px;font-size:11px;}
+
+/* ---------- tidtaker + steg ---------- */
+.tidtaker{border:1px solid var(--line);border-radius:13px;background:var(--card);overflow:hidden;}
+.tt-topp{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card);z-index:2;}
+.tt-tid{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;}
+.tt-neste{font-size:12px;margin-top:6px;}
+.btn{font-family:"Spline Sans Mono",monospace;font-size:13px;padding:11px 20px;border-radius:9px;
+  background:var(--accent);color:var(--accent-contrast);border:1.5px solid var(--accent);font-weight:700;}
+.btn:hover{filter:brightness(1.1);}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);font-weight:500;}
+.steg{list-style:none;margin:0;padding:0;}
+.steg li{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:14px 18px;border-top:1px solid var(--muted2);
+  font-size:15.5px;transition:background .2s,opacity .2s;}
+.steg li:first-child{border-top:0;}
+.steg .t{font-size:13px;color:var(--accent-ink);padding-top:2px;}
+.steg li.aktiv{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent);}
+.steg li.ferdig{opacity:.45;}
+.notater{margin-top:28px;}
+.notater p{margin:0;color:var(--ink);max-width:66ch;}
+.kilde{font-size:14px;margin-top:18px;}
+.kilde a{color:var(--accent-ink);}
+
+@media (max-width:600px){
+  .params{grid-template-columns:repeat(2,1fr);}
+  .karakter{grid-template-columns:repeat(2,1fr);}
+  .utstyr-rad{grid-template-columns:1fr;gap:2px;}
+  .steg li{grid-template-columns:70px 1fr;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}

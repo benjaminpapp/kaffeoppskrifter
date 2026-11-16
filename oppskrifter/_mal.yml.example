@@ -1,0 +1,29 @@
+# Mal for ny oppskrift.
+# Kopier denne fila til oppskrifter/<navn-med-bindestrek>.yml og fyll inn.
+# Filnavnet blir adressen til oppskriften på nettsiden.
+
+navn: Navn på oppskriften
+niva: lett            # lett | middels | avansert
+modus: åpen           # åpen | lukket | hybrid
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: Én eller to setninger om hva som kjennetegner koppen.
+kaffe: 15             # gram
+vann: 250             # gram totalt
+temp: 93 °C
+malegrad: 5.5         # ZP6
+tid: ca. 3:00
+karakter:             # 1–5
+  syre: 3
+  sodme: 3
+  fylde: 3
+  klarhet: 3
+steg:
+  - tid: "0:00"       # fast tidspunkt fra første helling
+    tekst: "Bloom: hell opp til **50 g**"   # **fet** skrift er lov
+  - tid: "3:00"
+    ca: true          # valgfritt: markerer at tiden er omtrentlig
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: Valgfritt. Bønne, kilde, hva du vil justere neste gang.
+kilde:                # valgfritt
+  navn: Hvor oppskriften kommer fra
+  url: https://...

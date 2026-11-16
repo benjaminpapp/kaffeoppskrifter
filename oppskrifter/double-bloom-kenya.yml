@@ -1,0 +1,26 @@
+navn: Double bloom (Kenya)
+niva: lett
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: Hverdagsoppskriften. To korte bloom-faser og så resten av vannet i én helling.
+kaffe: 15
+vann: 240
+temp: ca. 95 °C
+malegrad: 5.5
+tid: 2:00–2:30
+karakter:
+  syre: 4
+  sodme: 3
+  fylde: 2
+  klarhet: 4
+steg:
+  - tid: "0:00"
+    tekst: "Bloom: hell opp til **30 g**"
+  - tid: "0:30"
+    tekst: "Bloom nr. 2: hell opp til **60 g**"
+  - tid: "1:00"
+    tekst: Hell resten opp til **240 g**
+  - tid: "2:15"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: Lagd for Kenya, så syren får komme frem.

@@ -1,0 +1,33 @@
+navn: Brian Quan Switch
+niva: lett
+modus: hybrid
+brygger: "Hario Switch (hybrid: lukket → åpen)"
+beskrivelse: Starter med immersion i lukket Switch og går over til perkolering. Intens og smaksrik kopp.
+kaffe: 14
+vann: 200
+temp: 93 °C
+malegrad: 5.0
+tid: ca. 2:00
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 3
+  klarhet: 4
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**, hell opp til **40 g** og la det trekke
+  - tid: "0:35"
+    tekst: "**Åpne** Switch. Hell i sirkler opp til **100 g**"
+  - tid: "0:50"
+    ca: true
+    tekst: Hell rett ned i midten opp til **200 g**
+  - tid: "2:00"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Hell fra moderat høyde, og bruk vann på 80–100 ppm. La koppen kjøle seg 2–5 min.
+  Glass-Switch gir mer syre, mens sort keramikk gir mer fylde. Ligner på Emi Fukahoris
+  MAME-oppskrift (14 g / 200 g, 93 °C, 50 g bloom lukket, åpne ved 0:30, resten innen 1:10, ferdig 2:20).
+kilde:
+  navn: Emi Fukahori (European Coffee Trip)
+  url: https://europeancoffeetrip.com/easy-hario-switch-recipe-emi-fukahor/

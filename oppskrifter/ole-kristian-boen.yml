@@ -1,0 +1,31 @@
+navn: Ole Kristian Bøen (WBrC 2021)
+niva: middels
+modus: hybrid
+brygger: "Hario Switch (hybrid: lukket → åpen → lukket → åpen)"
+beskrivelse: Den norske baristaens oppskrift fra World Brewers Cup 2021. Veksler to ganger mellom immersion og perkolering for fylde og sødme.
+kaffe: 16.5
+vann: 240
+temp: 96 °C
+malegrad: 4.8
+tid: 3:00–3:15
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 4
+  klarhet: 3
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**, hell opp til **50 g** og la det blomstre
+  - tid: "0:40"
+    tekst: "**Åpne** Switch og hell straks opp til **150 g** i midten"
+  - tid: "1:30"
+    tekst: "**Lukk** Switch og hell opp til **240 g** i sirkler"
+  - tid: "2:10"
+    tekst: "**Åpne** Switch og la det renne"
+  - tid: "3:05"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: I konkurransen brukte han en naturell Geisha fra Hacienda La Esmeralda.
+kilde:
+  navn: Hario Europe
+  url: https://www.hario-europe.com/blogs/hario-community/ole-kristian-boens-switch-recipe

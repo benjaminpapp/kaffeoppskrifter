@@ -1,0 +1,32 @@
+navn: James Hoffmann Switch
+niva: lett
+modus: lukket
+brygger: Hario Switch (lukket)
+beskrivelse: Ren immersion med en kort røring før du åpner. Gir en rund og søt kopp med lite innsats.
+kaffe: 15
+vann: 250
+temp: 95 °C
+malegrad: 5.5
+tid: ca. 3:00
+karakter:
+  syre: 2
+  sodme: 4
+  fylde: 4
+  klarhet: 3
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**, hell opp til **30–45 g** og virvle
+  - tid: "0:15"
+    ca: true
+    tekst: Hell opp til **250 g**
+  - tid: "2:00"
+    tekst: Rør forsiktig én gang hver vei
+  - tid: "2:15"
+    tekst: "**Åpne** Switch"
+  - tid: "3:00"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: Kilden oppgir ikke total tid, så 3:00 er et anslag.
+kilde:
+  navn: Perfect Daily Grind
+  url: https://perfectdailygrind.com/2026/03/hybrid-coffee-brewers-making-comeback/
