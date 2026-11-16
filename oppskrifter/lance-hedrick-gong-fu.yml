@@ -1,0 +1,46 @@
+navn: Lance Hedrick Gong Fu
+niva: avansert
+modus: lukket
+brygger: Hario Switch (lukket, åpnes tre ganger)
+beskrivelse: Tre trekkefaser med friskt vann på hver, etter prinsippet fra gongfu-teen. Kaffesengen gjør mesteparten av filtreringen.
+kaffe: 15
+vann: 250
+temp: 90 °C, men 75 °C på bloomen
+malegrad: 5.5
+tid: "5:40"
+karakter:
+  syre: 2
+  sodme: 5
+  fylde: 4
+  klarhet: 3
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**. Hell **50 g** vann på 75 °C i den tomme bryggeren
+  - tid: "0:12"
+    tekst: Ha i kaffen, og mett den forsiktig med en skje
+  - tid: "0:25"
+    tekst: La det trekke
+  - tid: "1:30"
+    tekst: "**Åpne** Switch, vent til det slutter å renne, og **lukk** igjen"
+  - tid: "1:55"
+    tekst: Hell til **150 g** over baksiden av en skje, og løsne sengen forsiktig
+  - tid: "2:08"
+    tekst: La det trekke
+  - tid: "3:10"
+    tekst: "**Åpne** Switch, vent, og **lukk** igjen"
+  - tid: "3:35"
+    tekst: Hell til **250 g**, og løsne sengen
+  - tid: "3:48"
+    tekst: La det trekke
+  - tid: "4:50"
+    tekst: "**Åpne** Switch og la resten renne"
+  - tid: "5:40"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Denne bryter konvensjonen på resten av siden: vannet går i før kaffen, så
+  vektene er vann alene og ikke avlesning på vekta. Karakteren er anslått ut
+  fra metoden, ikke smakt — juster den når du har brygget.
+kilde:
+  navn: Lance Hedrick (Gota)
+  url: https://gota.cafe/en/recipes/hario-switch-02/hedrick-gong-fu

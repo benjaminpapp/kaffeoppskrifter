@@ -1,0 +1,42 @@
+navn: Matt Winton 5 hellinger
+niva: avansert
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: Vinneroppskriften fra World Brewers Cup 2021. Fem like hellinger, der hver ventes ut til sengen er tørr, og lavere temperatur mot slutten for å dempe uttrekket.
+kaffe: 20
+vann: 300
+temp: 93 °C, så 88 °C
+malegrad: 5.0
+tid: ca. 6:50
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 2
+  klarhet: 5
+steg:
+  - tid: "0:00"
+    tekst: "Bloom: hell opp til **60 g** med 93 °C"
+  - tid: "0:50"
+    ca: true
+    tekst: Hell opp til **120 g** med 88 °C, når sengen er tørr
+  - tid: "1:40"
+    ca: true
+    tekst: Hell opp til **180 g**, når sengen er tørr
+  - tid: "2:30"
+    ca: true
+    tekst: Hell opp til **240 g**, når sengen er tørr
+  - tid: "3:20"
+    ca: true
+    tekst: Hell opp til **300 g**, når sengen er tørr
+  - tid: "6:50"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Tidspunktene er anslag, ikke oppskriften. Winton heller når sengen er tørr og
+  bryggeren nesten har sluttet å dryppe, ikke etter klokka, så bruk tidene som
+  en pekepinn og se på sengen i stedet. Avrenningen etter siste helling tar rundt
+  3:30. Han brukte to kjeler og en metall-V60. Karakteren er anslått ut fra
+  metoden, ikke smakt.
+kilde:
+  navn: Honest Coffee Guide
+  url: https://honestcoffeeguide.com/brew-recipes/matt-winton-v60-five-pour/

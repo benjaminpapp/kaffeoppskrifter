@@ -1,0 +1,37 @@
+navn: Kurasu Switch Hybrid
+niva: middels
+modus: hybrid
+brygger: "Hario Switch (hybrid: lukket → åpen)"
+beskrivelse: Kort immersion med virvling, så tre hellinger i åpen Switch. Grov maling gir en ren og søt kopp uten mye innsats.
+kaffe: 16
+vann: 240
+temp: 91 °C
+malegrad: 6.5
+tid: ca. 2:33
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 3
+  klarhet: 4
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**, hell opp til **50 g** og virvle forsiktig fem ganger
+  - tid: "0:40"
+    tekst: "**Åpne** Switch"
+  - tid: "0:50"
+    tekst: Hell i sirkler opp til **120 g**
+  - tid: "1:30"
+    tekst: Hell i sirkler opp til **200 g**
+  - tid: "2:00"
+    tekst: Hell rett ned i midten opp til **240 g**
+  - tid: "2:30"
+    tekst: "**Lukk** Switch"
+  - tid: "2:33"
+    ca: true
+    tekst: Ferdig når det slutter å dryppe
+notater: >-
+  Kurasu oppgir Fellow Ode Gen2 på 8,0, altså grovt. ZP6-tallet her er omregnet
+  og bør finjusteres. Karakteren er anslått ut fra metoden, ikke smakt.
+kilde:
+  navn: Kurasu Kyoto
+  url: https://kurasu.kyoto/blogs/kurasu-journal/2-brewing-recipes-with-hario-immersion-dripper-switch
