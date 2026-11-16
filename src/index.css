@@ -7,8 +7,12 @@
    Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
    Bodoni Moda brukes i ordmerket og på oppskriftsnavnene.
 
-   Rust er 5,16:1 mot skifer og 5,13:1 mot mørk flate, så aksenten
-   holder AA som tekst i begge moduser.
+   Aksenten er samme farge som prikkene i bakgrunnen: #b34c01 gir 4,57:1
+   mot lys flate. Mørk modus bruker samme tone løftet til #d9680f, siden
+   originalen bare når 3,42:1 der. Begge holder AA som tekst.
+
+   Siden har ingen skillestreker. Gruppering skjer med mellomrom og
+   kortflater i stedet.
    ===================================================================== */
 :root{
   --ground:#eceef0;
@@ -17,9 +21,9 @@
   --ink-sub:#4c565f;
   --rule:#d6dadd;
   --rule-sterk:#bfc5ca;
-  --rust:#a8432a;
-  --rust-flate:rgba(168,67,42,.10);
-  --rust-vask:rgba(168,67,42,.06);
+  --rust:#b34c01;
+  --rust-flate:rgba(179,76,1,.10);
+  --rust-vask:rgba(179,76,1,.06);
   --skygge:rgba(26,31,36,.08);
   --korn:.03;
 
@@ -38,9 +42,9 @@
     --ink-sub:#adb8c0;
     --rule:#242c33;
     --rule-sterk:#333d45;
-    --rust:#d4694a;
-    --rust-flate:rgba(212,105,74,.14);
-    --rust-vask:rgba(212,105,74,.08);
+    --rust:#d9680f;
+    --rust-flate:rgba(217,104,15,.14);
+    --rust-vask:rgba(217,104,15,.08);
     --skygge:rgba(0,0,0,.45);
     --korn:.045;
     --kort-a:.08;
@@ -85,7 +89,7 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
 }
 
 /* ---------- ramme ---------- */
-main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+main{max-width:var(--maxw);margin:0 auto;padding:0 24px 72px;}
 /* Navigasjonen følger ikke innholdskolonnen, men hele bredden, slik at
    ordmerket midtstilles mot siden og ikke mot tekstspalta. */
 .nav{
@@ -101,13 +105,6 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 }
 /* Punktumet bærer aksenten i navigasjonen nå som understreken er borte. */
 .merke-punktum{color:var(--rust);}
-footer{
-  display:flex;justify-content:space-between;
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
-  letter-spacing:.06em;color:var(--ink-sub);
-  margin-top:72px;padding-top:20px;padding-bottom:48px;
-  border-top:1px solid var(--rule);
-}
 
 /* ---------- bakgrunn ---------- */
 /* Fast bak hele siden. z-index -1 legger den over body-bakgrunnen, men
@@ -144,7 +141,7 @@ footer{
 }
 
 /* ---------- hero ---------- */
-.hero{padding:38px 0 32px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+.hero{padding:38px 0 26px;margin-bottom:18px;}
 /* Ingressen står alene her nå, så den midtstilles mot siden. Målelinja er
    kortere enn ellers: midtstilt tekst blir tyngre å lese på full bredde. */
 .hero .lead{
@@ -163,7 +160,7 @@ h1{
 }
 
 /* ---------- utstyr ---------- */
-.utstyr{border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:26px;}
+.utstyr{padding-bottom:4px;margin-bottom:30px;}
 .utstyr summary{
   list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;
   padding:4px 0 14px;
@@ -309,19 +306,18 @@ h1{
 }
 .tilbake::before{content:"\2190 ";}
 .tilbake:hover{color:var(--ink);}
-.opp-topp{border-bottom:1px solid var(--rule);padding-bottom:26px;}
+.opp-topp{padding-bottom:22px;}
 .opp-topp .stempel{margin-bottom:14px;}
 .opp-topp h1{font-size:clamp(32px,6.5vw,50px);}
 
 .params{
   display:grid;grid-template-columns:repeat(3,1fr);
-  margin:0 0 34px;border-bottom:1px solid var(--rule);
+  margin:0 0 34px;gap:2px 18px;
 }
 .params div{
-  padding:14px 14px 14px 0;border-right:1px solid var(--rule);
+  padding:12px 14px 12px 0;
 }
-.params div:nth-child(3n){border-right:0;}
-.params div:nth-child(n+4){border-top:1px solid var(--rule);}
+
 .params dt{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
   letter-spacing:.11em;text-transform:uppercase;color:var(--ink-sub);
@@ -399,8 +395,7 @@ h1{
 .profil-kryss circle{fill:var(--rust);stroke:var(--ground);stroke-width:2.5;}
 .profil-avlesning{
   display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;
-  border-top:1px solid var(--rule);padding-top:11px;margin-top:4px;
-  min-height:46px;
+  padding-top:12px;margin-top:2px;min-height:46px;
 }
 .profil-avlesning strong{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
@@ -428,11 +423,11 @@ h1{
 }
 
 /* ---------- tidtaker ---------- */
-.tidtaker{border-top:1px solid var(--ink);}
+.tidtaker{padding-top:6px;}
 .tt-topp{
   display:flex;justify-content:space-between;align-items:center;gap:18px;
   padding:18px 0 20px;position:sticky;top:0;z-index:var(--z-fast);
-  background:var(--ground);border-bottom:1px solid var(--rule);
+  background:var(--ground);
 }
 /* Tabulære siffer fordi tallet tikker — proporsjonale ville flyttet
    layouten hvert sekund. Samme familie som resten: et eget display-snitt
@@ -490,7 +485,6 @@ h1{
 
 .tom{
   padding:44px 0 28px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;
-  border-top:1px solid var(--rule);
 }
 .tom p{margin:0;max-width:var(--maaleflate);}
 .tom code{
@@ -505,9 +499,6 @@ h1{
 }
 @media (max-width:620px){
   .params{grid-template-columns:repeat(2,1fr);}
-  .params div:nth-child(3n){border-right:1px solid var(--rule);}
-  .params div:nth-child(2n){border-right:0;}
-  .params div:nth-child(n+3){border-top:1px solid var(--rule);}
   .karakter-rader{grid-template-columns:1fr;}
   .utstyr-rad{grid-template-columns:1fr;gap:4px;}
   .rad-topp{flex-direction:column;align-items:flex-start;gap:6px;}

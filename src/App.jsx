@@ -251,10 +251,6 @@ export default function App() {
         {valgt && <Oppskrift o={valgt} />}
         {!slug && <Oversikt />}
       </main>
-      <footer>
-        <span>Benjamin Thorsen Papp</span>
-        <span>Mandal</span>
-      </footer>
     </>
   )
 }
