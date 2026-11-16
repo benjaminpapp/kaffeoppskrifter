@@ -1,48 +1,57 @@
 # Kaffeoppskrifter
 
-Mine pour-over-oppskrifter for Hario Switch, publisert som nettside på
+Pour-over-oppskrifter for Hario Switch, publisert på
 <https://benjaminpapp.github.io/kaffeoppskrifter/>.
 
-## Slik oppdaterer du
+Hver oppskrift er én YAML-fil i [`oppskrifter/`](oppskrifter). Oppskriftene er
+innholdet, ikke koden: de leses inn ved bygging, så en ny oppskrift krever ingen
+endringer i `src/`. Push til `main` validerer alle filene og publiserer siden på
+nytt. Feiler valideringen, stopper publiseringen og forrige versjon står.
 
-Hver oppskrift er én fil i [`oppskrifter/`](oppskrifter). Endrer du en fil og
-pusher til `main`, bygger GitHub Actions siden på nytt og publiserer den
-automatisk. Det tar 1–2 minutter.
+Filnavnet er adressen: `oppskrifter/double.yml` → `#/o/double`. Filer som starter
+med `_` er ikke oppskrifter — [`_utstyr.yml`](oppskrifter/_utstyr.yml) er utstyret
+som vises øverst på siden, [`_mal.yml.example`](oppskrifter/_mal.yml.example) er
+malen for en ny oppskrift.
 
-- **Endre en oppskrift:** rediger fila, for eksempel direkte på github.com
-  (blyant-ikonet) eller i GitHub-appen.
-- **Ny oppskrift:** kopier [`oppskrifter/_mal.yml.example`](oppskrifter/_mal.yml.example)
-  til `oppskrifter/<navn-med-bindestrek>.yml` og fyll inn.
-- **Utstyr:** står i [`oppskrifter/_utstyr.yml`](oppskrifter/_utstyr.yml).
+## Oppskriftsformat
 
-Bygget sjekker alle oppskriftene først. Mangler et felt, eller er det en
-skrivefeil i YAML, stopper publiseringen, og du ser feilen under **Actions**
-på GitHub. Da blir den gamle siden liggende til feilen er rettet.
-
-### Feltene
-
-| Felt | Eksempel | Merknad |
+| Felt | Type | |
 | --- | --- | --- |
-| `niva` | `lett` | `lett`, `middels` eller `avansert` |
-| `modus` | `hybrid` | `åpen`, `lukket` eller `hybrid` |
-| `kaffe`, `vann` | `15`, `250` | gram, tall med punktum (`16.5`) |
-| `malegrad` | `5.5` | ZP6 |
-| `karakter` | `syre: 3` | heltall 1–5 for syre, sodme, fylde, klarhet |
-| `steg[].tid` | `"1:30"` | fast tidspunkt fra første helling, med anførselstegn |
-| `steg[].ca` | `true` | valgfritt, viser «ca.» foran tiden |
-| `steg[].tekst` | `Hell opp til **250 g**` | `**fet**` er lov |
+| `navn`, `brygger`, `beskrivelse` | tekst | |
+| `niva` | `lett` \| `middels` \| `avansert` | styrer sortering og gruppering |
+| `modus` | `åpen` \| `lukket` \| `hybrid` | Switch-modus, vises som tag |
+| `kaffe`, `vann` | tall, gram | ratio regnes ut |
+| `malegrad` | tall | ZP6 |
+| `temp`, `tid` | tekst | fri form, f.eks. `92 °C`, `2:30–3:00` |
+| `karakter` | `syre`, `sodme`, `fylde`, `klarhet` | heltall 1–5, alle fire kreves |
+| `steg[].tid` | `"M:SS"` | tidspunkt fra første helling, må være i hermetegn |
+| `steg[].tekst` | tekst | `**fet**` rendres |
+| `steg[].ca` | bool | valgfri, viser «ca.» foran tiden |
+| `notater` | tekst | valgfri |
+| `kilde` | `navn` + `url` | valgfri, begge kreves hvis satt |
 
-## Kjøre lokalt
+Tallfelt bruker punktum (`16.5`), ikke komma — siden formaterer til norsk selv.
+`steg[].tid` er faste tidspunkt, ikke intervaller, og driver tidtakeren i
+oppskriftsvisningen.
+
+## Utvikling
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173/kaffeoppskrifter/
-npm run valider  # sjekk oppskriftene
-npm run build    # bygger til dist/
+npm run dev       # http://localhost:5173/kaffeoppskrifter/
+npm run valider   # validerer oppskriftene
+npm run build     # validerer, så bygger til dist/
 ```
 
-## Oppsett på GitHub (én gang)
+## Oppbygging
 
-1. **Settings → Pages → Source:** velg **GitHub Actions**.
-2. GitHub Pages fra et privat repo krever GitHub Pro. Selve nettsiden blir
-   offentlig uansett. Bare koden og historikken er privat.
+React + Vite, ingen backend. Hash-ruting (`#/o/<slug>`) slik at GitHub Pages
+slipper 404-omskriving.
+
+| | |
+| --- | --- |
+| [`src/data.js`](src/data.js) | leser `oppskrifter/*.yml` med `import.meta.glob`, sorterer, regner ratio |
+| [`src/App.jsx`](src/App.jsx) | ruting, oversikt, filtre på nivå og modus |
+| [`src/Oppskrift.jsx`](src/Oppskrift.jsx) | oppskriftsvisning med tidtaker og wake lock |
+| [`scripts/valider.mjs`](scripts/valider.mjs) | feltvalidering, kjører før hvert bygg |
+| [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) | bygger og publiserer til Pages ved push til `main` |
