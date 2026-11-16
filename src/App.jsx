@@ -15,29 +15,34 @@ function useHash() {
   return hash
 }
 
-// Bakgrunnen får grunnfargen fra temaet, ikke en hardkodet verdi. Shaderen
-// avgjør selv om den tegner lyst-på-mørkt eller omvendt ut fra den, så en
-// fast #000 ville gjort lys modus feil.
-function useGrunnfarge() {
-  const [farge, setFarge] = useState("#11161b")
+// Bakgrunnen leser både grunnfarge og aksent fra temaet i stedet for
+// hardkodede verdier. Shaderen avgjør selv om den tegner lyst-på-mørkt ut
+// fra grunnfargen, og prikkene kan ikke komme ut av takt med aksenten.
+function useTemafarger() {
+  const [farger, setFarger] = useState({ grunn: "#11161b", aksent: "#b9784a" })
   useEffect(() => {
-    const les = () =>
-      setFarge(getComputedStyle(document.documentElement).getPropertyValue("--ground").trim() || "#11161b")
+    const les = () => {
+      const s = getComputedStyle(document.documentElement)
+      setFarger({
+        grunn: s.getPropertyValue("--ground").trim() || "#11161b",
+        aksent: s.getPropertyValue("--rust").trim() || "#b9784a",
+      })
+    }
     les()
     const mq = window.matchMedia("(prefers-color-scheme: dark)")
     mq.addEventListener("change", les)
     return () => mq.removeEventListener("change", les)
   }, [])
-  return farge
+  return farger
 }
 
 function Bakgrunn() {
-  const grunn = useGrunnfarge()
+  const { grunn, aksent } = useTemafarger()
   return (
     <div className="bakgrunn" aria-hidden="true">
       <PatternWaves
         preset="silk"
-        color="#b34c01"
+        color={aksent}
         backgroundColor={grunn}
         fade="center"
         interactive

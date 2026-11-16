@@ -7,9 +7,10 @@
    Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
    Bodoni Moda brukes i ordmerket og på oppskriftsnavnene.
 
-   Aksenten er samme farge som prikkene i bakgrunnen: #b34c01 gir 4,57:1
-   mot lys flate. Mørk modus bruker samme tone løftet til #d9680f, siden
-   originalen bare når 3,42:1 der. Begge holder AA som tekst.
+   Aksenten er brun, ikke oransje: metningen er nede fra S99 til S59.
+   #8a4a24 gir 5,85:1 mot lys flate, #b9784a gir 5,07:1 mot mørk. Begge
+   holder AA som tekst. Prikkene i bakgrunnen leser samme token, så de
+   kan ikke komme ut av takt med aksenten.
 
    Siden har ingen skillestreker. Gruppering skjer med mellomrom og
    kortflater i stedet.
@@ -21,9 +22,9 @@
   --ink-sub:#4c565f;
   --rule:#d6dadd;
   --rule-sterk:#bfc5ca;
-  --rust:#b34c01;
-  --rust-flate:rgba(179,76,1,.10);
-  --rust-vask:rgba(179,76,1,.06);
+  --rust:#8a4a24;
+  --rust-flate:rgba(138,74,36,.10);
+  --rust-vask:rgba(138,74,36,.06);
   --skygge:rgba(26,31,36,.08);
   --korn:.03;
 
@@ -42,9 +43,9 @@
     --ink-sub:#adb8c0;
     --rule:#242c33;
     --rule-sterk:#333d45;
-    --rust:#d9680f;
-    --rust-flate:rgba(217,104,15,.14);
-    --rust-vask:rgba(217,104,15,.08);
+    --rust:#b9784a;
+    --rust-flate:rgba(185,120,74,.14);
+    --rust-vask:rgba(185,120,74,.08);
     --skygge:rgba(0,0,0,.45);
     --korn:.045;
     --kort-a:.08;
