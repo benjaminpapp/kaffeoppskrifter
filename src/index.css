@@ -91,7 +91,7 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   /* Eneste stedet serifen brukes: ordmerket. Resten av siden holder
      seg til Archivo, så serifen er et merke og ikke et tema. */
   font-family:"Bodoni Moda",Didot,Georgia,serif;
-  font-size:clamp(25px,3.6vw,31px);font-weight:600;letter-spacing:.005em;
+  font-size:clamp(42px,7vw,66px);font-weight:600;letter-spacing:-.01em;line-height:1;
 }
 /* Punktumet bærer aksenten i navigasjonen nå som understreken er borte. */
 .merke-punktum{color:var(--rust);}
