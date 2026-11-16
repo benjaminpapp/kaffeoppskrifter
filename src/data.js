@@ -22,3 +22,23 @@ export const sekunder = (mmss) => {
   const [m, s] = String(mmss).split(":").map(Number)
   return m * 60 + s
 }
+export const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`
+
+// Vannmassen i et steg står i teksten som **250 g**. Et intervall som
+// **30–45 g** leses som øvre grense, siden det er vekta man styrer etter.
+const masse = (tekst) => {
+  const m = String(tekst).match(/\*\*\s*(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?\s*g\s*\*\*/)
+  return m ? Number((m[2] ?? m[1]).replace(",", ".")) : null
+}
+
+// Hellekurven: totalvekt på vekta ved hvert tidspunkt. Steg uten vekt er
+// pauser, trekk eller åpning av Switchen — de arver forrige vekt, så kurven
+// blir en trapp som viser når det faktisk helles og når det bare står.
+export const profil = (o) => {
+  let forrige = 0
+  return o.steg.map((s) => {
+    const v = masse(s.tekst)
+    if (v !== null) forrige = v
+    return { t: sekunder(s.tid), vekt: forrige, helling: v !== null, tid: s.tid, ca: !!s.ca, tekst: s.tekst }
+  })
+}

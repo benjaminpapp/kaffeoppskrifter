@@ -1,129 +1,386 @@
 /* =====================================================================
-   Kaffeoppskrifter — samme design-tokens som porteføljen
-   (mørk palett, emerald-aksent, Schibsted Grotesk + Spline Sans Mono).
+   Bryggejournal — egen identitet, ikke porteføljens.
+   Porselen og grafitt med én dempet kopperaksent fra svanehalskjelen.
+   Satt som et cupping-skjema: hårfine linjer, stemplede etiketter,
+   tabulære tall. Fraunces + Instrument Sans + IBM Plex Mono.
+
+   Kopper er 3,88:1 mot porselen — under AA for liten tekst. Derfor
+   bærer den bare marker, linjer og store tall; all tekst bruker
+   --ink eller --ink-sub.
    ===================================================================== */
 :root{
-  --ink:#e8eef5;
-  --paper:#070b12;
-  --card:#0e141d;
-  --line:#233042;
-  --muted:#3a4a5e;
-  --muted2:#141c28;
-  --accent:#36e0a0;
-  --accent-ink:#6cf2c0;
-  --accent-contrast:#04130c;
-  --accent-soft:#0c2419;
-  --sub:#93a1b4;
-  --maxw:880px;
+  --ground:#f7f5f2;
+  --raised:#fffdfa;
+  --ink:#1c1b19;
+  --ink-sub:#6b6560;
+  --rule:#e2dcd4;
+  --rule-sterk:#cfc7bd;
+  --kopper:#b06a3e;
+  --kopper-flate:rgba(176,106,62,.10);
+  --kopper-vask:rgba(176,106,62,.06);
+  --skygge:rgba(60,44,32,.07);
+  --korn:.035;
+
+  --maaleflate:68ch;
+  --maxw:760px;
+  --z-fast:10;
+  --z-korn:100;
 }
+@media (prefers-color-scheme:dark){
+  :root{
+    --ground:#17120f;
+    --raised:#1e1815;
+    --ink:#efe9e2;
+    --ink-sub:#a79e95;
+    --rule:#2e2621;
+    --rule-sterk:#3d342d;
+    --kopper:#c47e52;
+    --kopper-flate:rgba(196,126,82,.14);
+    --kopper-vask:rgba(196,126,82,.07);
+    --skygge:rgba(0,0,0,.4);
+    --korn:.05;
+  }
+}
+
 *{box-sizing:border-box;}
-html{background:var(--paper);}
-body{margin:0;color:var(--ink);font-family:"Schibsted Grotesk",system-ui,sans-serif;
-  -webkit-font-smoothing:antialiased;line-height:1.6;
-  background:radial-gradient(1200px 600px at 100% -10%,rgba(54,224,160,.08),transparent 60%);}
-.mono{font-family:"Spline Sans Mono",monospace;}
+html{background:var(--ground);scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+/* Papirkorn, så flatene ikke leser som rent digitalt hvitt. */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:var(--z-korn);
+  opacity:var(--korn);mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme:dark){ body::after{mix-blend-mode:screen;} }
+
 a{color:inherit;text-decoration:none;}
-button{font:inherit;cursor:pointer;}
-:focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:4px;}
-.sub{color:var(--sub);}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
+:focus-visible{outline:2px solid var(--kopper);outline-offset:3px;border-radius:2px;}
+
+.hopp{
+  position:absolute;left:-9999px;top:0;z-index:calc(var(--z-korn) + 1);
+  background:var(--raised);color:var(--ink);padding:10px 16px;
+  border:1px solid var(--rule-sterk);
+}
+.hopp:focus{left:12px;top:12px;}
+
+/* ---------- stempel: alle små etiketter ---------- */
+.stempel{
+  display:block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-sub);
+}
 
 /* ---------- ramme ---------- */
-.nav,main,footer{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
-.nav{display:flex;justify-content:space-between;align-items:center;height:64px;font-size:13px;}
-.nav .brand{font-weight:700;font-size:16px;letter-spacing:-.01em;}
-.nav .brand span{color:var(--accent);}
-.nav a.sub:hover{color:var(--accent-ink);}
-footer{padding-top:60px;padding-bottom:40px;font-size:12px;}
+.nav,main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.nav{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-top:26px;padding-bottom:22px;
+}
+.merke{
+  font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;
+  font-variation-settings:"SOFT" 25,"WONK" 1,"opsz" 24;letter-spacing:-.015em;
+}
+.merke[aria-current="page"]{box-shadow:0 2px 0 var(--kopper);}
+.nav-ut{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.06em;color:var(--ink-sub);padding-bottom:2px;
+  border-bottom:1px solid var(--rule-sterk);transition:color .2s,border-color .2s;
+}
+.nav-ut:hover{color:var(--ink);border-color:var(--kopper);}
+.nav-ut::after{content:" \2197";}
+footer{
+  display:flex;justify-content:space-between;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.06em;color:var(--ink-sub);
+  margin-top:72px;padding-top:20px;padding-bottom:48px;
+  border-top:1px solid var(--rule);
+}
 
-.eyebrow{font-family:"Spline Sans Mono",monospace;font-size:11px;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--accent-ink);margin:0 0 10px;font-weight:500;}
-h1{font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.03em;margin:0 0 14px;font-weight:700;}
-.lead{color:var(--sub);font-size:17px;max-width:62ch;margin:0;}
-.hero{padding:44px 0 26px;}
+/* ---------- hero ---------- */
+.hero{padding:14px 0 34px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+.hero .stempel{margin-bottom:16px;}
+h1{
+  font-family:Fraunces,Georgia,serif;font-weight:600;
+  font-size:clamp(40px,8vw,64px);line-height:1.02;letter-spacing:-.03em;
+  font-variation-settings:"SOFT" 18,"WONK" 1,"opsz" 96;
+  margin:0 0 16px;text-wrap:balance;
+}
+.lead{
+  margin:0;color:var(--ink-sub);font-size:16.5px;max-width:var(--maaleflate);
+  text-wrap:pretty;
+}
 
 /* ---------- utstyr ---------- */
-.utstyr{border:1px solid var(--line);border-radius:13px;background:var(--card);margin:6px 0 26px;}
-.utstyr summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;flex-direction:column;gap:2px;}
+.utstyr{border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:26px;}
+.utstyr summary{
+  list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;
+  padding:4px 0 14px;
+}
 .utstyr summary::-webkit-details-marker{display:none;}
-.utstyr summary .eyebrow{margin:0;}
-.utstyr summary .eyebrow::after{content:" +";}
-.utstyr[open] summary .eyebrow::after{content:" –";}
-.utstyr summary .sub{font-size:13.5px;}
-.utstyr dl{margin:0;padding:0 18px 8px;}
-.utstyr-rad{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--muted2);}
-.utstyr-rad dt{font-size:12px;color:var(--sub);padding-top:2px;}
-.utstyr-rad dd{margin:0;display:flex;flex-direction:column;gap:2px;font-size:14.5px;}
-.utstyr-rad dd span{color:var(--sub);}
+.utstyr summary .stempel::after{content:" +";}
+.utstyr[open] summary .stempel::after{content:" \2013";}
+.utstyr-liste{font-size:14px;color:var(--ink-sub);}
+.utstyr summary:hover .utstyr-liste{color:var(--ink);}
+.utstyr dl{margin:0 0 10px;}
+.utstyr-rad{
+  display:grid;grid-template-columns:96px 1fr;gap:16px;
+  padding:13px 0;border-top:1px solid var(--rule);
+}
+.utstyr-rad dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);padding-top:3px;
+}
+.utstyr-rad dd{margin:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;}
+.utstyr-rad dd span{color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;}
 
-/* ---------- filtre ---------- */
-.filtre{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
-.filter{display:flex;gap:8px;flex-wrap:wrap;}
-.pill{font-family:"Spline Sans Mono",monospace;font-size:12px;padding:6px 13px;border-radius:999px;
-  border:1.5px solid var(--line);background:transparent;color:var(--sub);transition:all .15s;}
-.pill:hover{border-color:var(--muted);color:var(--ink);}
-.pill.on{background:var(--accent);border-color:var(--accent);color:var(--accent-contrast);}
+/* ---------- filtre: tekstbrytere, ikke piller ---------- */
+.filtre{display:flex;flex-direction:column;gap:12px;margin-bottom:38px;}
+.filter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.filter .stempel{margin-right:8px;min-width:52px;}
+.bryter{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+  letter-spacing:.04em;color:var(--ink-sub);padding:4px 2px;
+  border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;
+}
+.bryter:hover{color:var(--ink);border-bottom-color:var(--rule-sterk);}
+.bryter.on{color:var(--ink);border-bottom-color:var(--kopper);}
+.bryter:active{transform:translateY(1px);}
 
-/* ---------- kort ---------- */
-.gruppe{margin-top:34px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
-.card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:18px;
-  display:flex;flex-direction:column;gap:12px;transition:border-color .15s,transform .15s;}
-.card:hover{border-color:var(--accent);transform:translateY(-2px);}
-.card .cap{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
-.card .cap strong{font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.25;}
-.card .beskr{margin:0;color:var(--sub);font-size:14px;line-height:1.5;}
-.meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11.5px;color:var(--sub);}
-.tag{font-family:"Spline Sans Mono",monospace;font-size:11px;padding:3px 9px;border-radius:999px;
-  border:1px solid var(--muted);color:var(--sub);white-space:nowrap;}
-.tag.modus-hybrid{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft);}
-.tag.modus-lukket{border-color:#5fd8ff55;color:#9fe6ff;}
-.mini{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;border-top:1px solid var(--muted2);padding-top:10px;}
-.mini-rad{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--sub);}
-.tom{margin-top:30px;}
+/* ---------- journalrader ---------- */
+.gruppe{margin-bottom:40px;}
+.gruppe-tittel{
+  display:flex;align-items:center;gap:10px;margin:0 0 2px;font-weight:500;
+}
+.gruppe-tall{
+  font-size:10px;color:var(--ink-sub);border:1px solid var(--rule-sterk);
+  padding:1px 5px;letter-spacing:.04em;
+}
+.rader{display:flex;flex-direction:column;}
+.rad{
+  display:flex;flex-direction:column;gap:9px;
+  padding:20px 14px 20px 16px;margin-left:-16px;margin-right:-14px;
+  border-top:1px solid var(--rule);
+  box-shadow:inset 2px 0 0 transparent;
+  transition:background-color .2s,box-shadow .2s;
+}
+.rad:hover{background:var(--kopper-vask);box-shadow:inset 2px 0 0 var(--kopper);}
+.rad:active{transform:translateY(1px);}
+.rad-topp{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
+.rad h3{
+  font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:600;
+  font-variation-settings:"SOFT" 22,"WONK" 1,"opsz" 28;letter-spacing:-.018em;
+  line-height:1.15;margin:0;text-wrap:balance;
+}
+.rad-beskr{margin:0;color:var(--ink-sub);font-size:14.5px;line-height:1.55;max-width:var(--maaleflate);text-wrap:pretty;}
+.rad-data{
+  display:flex;flex-wrap:wrap;gap:2px 22px;margin:3px 0 0;
+}
+.rad-data div{display:flex;align-items:baseline;gap:6px;}
+.rad-data dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-sub);
+}
+.rad-data dd{
+  margin:0;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+  font-variant-numeric:tabular-nums;
+}
+.rad-karakter{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:3px;}
+.rad-karakter > span{display:flex;align-items:center;gap:7px;}
+.rad-karakter-navn{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);
+}
 
-/* ---------- karakter-prikker ---------- */
-.prikker{display:inline-flex;gap:4px;}
-.prikker .p{width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);}
-.prikker .p.on{background:var(--accent);border-color:var(--accent);}
+/* ---------- modus: form, ikke ekstra farge ---------- */
+.modus{
+  display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);
+}
+.glyf path{fill:none;stroke:var(--kopper);stroke-width:1.3;stroke-linejoin:round;}
+.glyf line{stroke:var(--kopper);stroke-width:1.8;stroke-linecap:round;}
+.glyf circle{fill:var(--kopper);}
+.modus-stor{font-size:12px;margin-top:4px;}
+
+/* ---------- hakk-karakter ---------- */
+.hakk{display:inline-flex;gap:3px;}
+.hakk .h{width:9px;height:3px;background:var(--rule-sterk);}
+.hakk .h.on{background:var(--kopper);}
 
 /* ---------- oppskrift ---------- */
-.oppskrift{padding-top:26px;}
-.tilbake{display:inline-block;font-size:12.5px;margin-bottom:26px;}
-.tilbake:hover{color:var(--accent-ink);}
-.params{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
-  border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:28px 0 14px;}
-.params div{background:var(--card);padding:12px 14px;}
-.params dt{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);}
-.params dd{margin:2px 0 0;font-size:16px;font-weight:600;}
-.karakter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:26px;}
-.karakter div{display:flex;flex-direction:column;gap:6px;font-size:11px;}
-
-/* ---------- tidtaker + steg ---------- */
-.tidtaker{border:1px solid var(--line);border-radius:13px;background:var(--card);overflow:hidden;}
-.tt-topp{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;
-  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--card);z-index:2;}
-.tt-tid{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;}
-.tt-neste{font-size:12px;margin-top:6px;}
-.btn{font-family:"Spline Sans Mono",monospace;font-size:13px;padding:11px 20px;border-radius:9px;
-  background:var(--accent);color:var(--accent-contrast);border:1.5px solid var(--accent);font-weight:700;}
-.btn:hover{filter:brightness(1.1);}
-.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);font-weight:500;}
-.steg{list-style:none;margin:0;padding:0;}
-.steg li{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:14px 18px;border-top:1px solid var(--muted2);
-  font-size:15.5px;transition:background .2s,opacity .2s;}
-.steg li:first-child{border-top:0;}
-.steg .t{font-size:13px;color:var(--accent-ink);padding-top:2px;}
-.steg li.aktiv{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent);}
-.steg li.ferdig{opacity:.45;}
-.notater{margin-top:28px;}
-.notater p{margin:0;color:var(--ink);max-width:66ch;}
-.kilde{font-size:14px;margin-top:18px;}
-.kilde a{color:var(--accent-ink);}
-
-@media (max-width:600px){
-  .params{grid-template-columns:repeat(2,1fr);}
-  .karakter{grid-template-columns:repeat(2,1fr);}
-  .utstyr-rad{grid-template-columns:1fr;gap:2px;}
-  .steg li{grid-template-columns:70px 1fr;}
+.oppskrift{padding-top:6px;}
+.tilbake{
+  display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11.5px;letter-spacing:.06em;color:var(--ink-sub);margin-bottom:30px;
+  transition:color .2s;
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+.tilbake::before{content:"\2190 ";}
+.tilbake:hover{color:var(--ink);}
+.opp-topp{border-bottom:1px solid var(--rule);padding-bottom:26px;}
+.opp-topp .stempel{margin-bottom:14px;}
+.opp-topp h1{font-size:clamp(32px,6.5vw,50px);}
+
+.params{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  margin:0 0 34px;border-bottom:1px solid var(--rule);
+}
+.params div{
+  padding:14px 14px 14px 0;border-right:1px solid var(--rule);
+}
+.params div:nth-child(3n){border-right:0;}
+.params div:nth-child(n+4){border-top:1px solid var(--rule);}
+.params dt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-sub);
+}
+.params dd{
+  margin:4px 0 0;font-size:17px;font-weight:500;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---------- hellekurve ---------- */
+.profil{margin:0 0 34px;}
+.profil figcaption{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:12px;
+}
+.profil-akse{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);
+}
+.profil-plott{position:relative;}
+.profil svg{display:block;width:100%;overflow:visible;}
+.rutenett{stroke:var(--rule);stroke-width:1;}
+.akse-tall{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  fill:var(--ink-sub);font-variant-numeric:tabular-nums;
+}
+.profil-flate{fill:var(--kopper-flate);}
+.profil-linje{fill:none;stroke:var(--kopper);stroke-width:2;stroke-linejoin:round;}
+.profil-punkt{fill:var(--kopper);stroke:var(--ground);stroke-width:2;}
+.profil-slutt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  font-weight:500;fill:var(--ink);font-variant-numeric:tabular-nums;
+}
+.profil-kryss line{stroke:var(--rule-sterk);stroke-width:1;}
+.profil-kryss circle{fill:var(--kopper);stroke:var(--ground);stroke-width:2.5;}
+.profil-avlesning{
+  display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:baseline;
+  border-top:1px solid var(--rule);padding-top:11px;margin-top:4px;
+  min-height:46px;
+}
+.profil-les{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;}
+.profil-les strong{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+  font-weight:600;font-variant-numeric:tabular-nums;
+}
+/* --ink, ikke --kopper: aksenten er 3,88:1 mot porselen og holder ikke
+   AA på liten tekst. Identiteten bæres av merket i kurven. */
+.profil-les-vekt{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+  color:var(--ink);font-variant-numeric:tabular-nums;
+}
+.profil-les-tekst{font-size:13.5px;color:var(--ink-sub);flex:1 1 180px;text-wrap:pretty;}
+
+/* ---------- karakter ---------- */
+.karakter{margin-bottom:36px;}
+.karakter .stempel{margin-bottom:12px;}
+.karakter-rader{display:grid;grid-template-columns:repeat(2,1fr);gap:9px 28px;}
+.karakter-rader div{
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;
+  border-bottom:1px solid var(--rule);padding-bottom:7px;
+}
+.karakter-navn{font-size:13.5px;}
+.karakter-tall{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  color:var(--ink-sub);font-variant-numeric:tabular-nums;min-width:8px;text-align:right;
+}
+
+/* ---------- tidtaker ---------- */
+.tidtaker{border-top:1px solid var(--ink);}
+.tt-topp{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;
+  padding:18px 0 20px;position:sticky;top:0;z-index:var(--z-fast);
+  background:var(--ground);border-bottom:1px solid var(--rule);
+}
+/* Tabulære siffer fordi tallet tikker — proporsjonale ville flyttet
+   layouten hvert sekund. Sans, ikke Fraunces: et display-snitt på et
+   måletall leser som dekor. */
+.tt-tid{
+  font-size:46px;font-weight:500;line-height:1;letter-spacing:-.025em;
+  font-variant-numeric:tabular-nums;
+}
+.tt-neste{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.05em;color:var(--ink-sub);margin-top:8px;
+}
+.knapp{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:500;
+  padding:12px 22px;background:var(--ink);color:var(--ground);
+  border:1px solid var(--ink);flex-shrink:0;
+  transition:background-color .2s,color .2s,border-color .2s,transform .1s;
+}
+.knapp:hover{background:var(--kopper);border-color:var(--kopper);color:var(--raised);}
+.knapp:active{transform:translateY(1px);}
+.knapp.sekundaer{background:transparent;color:var(--ink);border-color:var(--rule-sterk);}
+.knapp.sekundaer:hover{border-color:var(--kopper);color:var(--kopper);background:transparent;}
+
+.steg{list-style:none;margin:0;padding:0;}
+.steg li{
+  display:grid;grid-template-columns:76px 1fr;gap:16px;
+  padding:15px 0 15px 12px;margin-left:-12px;
+  border-bottom:1px solid var(--rule);font-size:15.5px;
+  box-shadow:inset 2px 0 0 transparent;
+  transition:background-color .25s,opacity .25s,box-shadow .25s;
+}
+.steg-tid{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
+  color:var(--ink-sub);font-variant-numeric:tabular-nums;padding-top:3px;
+}
+.steg-tekst{text-wrap:pretty;}
+.steg li.aktiv{background:var(--kopper-vask);box-shadow:inset 2px 0 0 var(--kopper);}
+.steg li.aktiv .steg-tid{color:var(--ink);}
+.steg li.ferdig{opacity:.42;}
+
+/* ---------- notater, kilde, tom ---------- */
+.notater{margin-top:40px;}
+.notater .stempel{margin-bottom:10px;}
+.notater p{margin:0;max-width:var(--maaleflate);text-wrap:pretty;}
+.kilde{font-size:14px;margin-top:24px;color:var(--ink-sub);}
+.kilde a{border-bottom:1px solid var(--rule-sterk);transition:border-color .2s;}
+.kilde a:hover{border-color:var(--kopper);}
+.kilde a::after{content:" \2197";}
+
+.tom{
+  padding:44px 0 28px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+  border-top:1px solid var(--rule);
+}
+.tom p{margin:0;max-width:var(--maaleflate);}
+.tom code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;
+  background:var(--kopper-vask);padding:1px 5px;
+}
+.tom .bryter{border-bottom-color:var(--kopper);color:var(--ink);}
+
+/* ---------- smått ---------- */
+@media (max-width:620px){
+  .params{grid-template-columns:repeat(2,1fr);}
+  .params div:nth-child(3n){border-right:1px solid var(--rule);}
+  .params div:nth-child(2n){border-right:0;}
+  .params div:nth-child(n+3){border-top:1px solid var(--rule);}
+  .karakter-rader{grid-template-columns:1fr;}
+  .utstyr-rad{grid-template-columns:1fr;gap:4px;}
+  .rad-topp{flex-direction:column;align-items:flex-start;gap:6px;}
+  .steg li{grid-template-columns:64px 1fr;gap:12px;}
+  .tt-tid{font-size:38px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important;}
+}

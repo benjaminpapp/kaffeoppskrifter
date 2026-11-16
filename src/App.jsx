@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import { oppskrifter, utstyr, NIVAER, MODUSER, ratio, tall } from "./data"
 import Oppskrift from "./Oppskrift"
-import { Prikker, KARAKTER } from "./ui"
+import { Prikker, ModusGlyf, KARAKTER } from "./ui"
 
 // Enkel hash-ruting (#/o/<slug>) — fungerer på GitHub Pages uten 404-triks.
 function useHash() {
@@ -17,26 +17,30 @@ function useHash() {
 const NIVA_TEKST = { lett: "Lett", middels: "Middels", avansert: "Avansert" }
 const MODUS_TEKST = { "åpen": "Åpen", lukket: "Lukket", hybrid: "Hybrid" }
 
-function Kort({ o }) {
+function Rad({ o }) {
   return (
-    <a className="card" href={`#/o/${o.slug}`}>
-      <div className="cap">
-        <strong>{o.navn}</strong>
-        <span className={`tag modus-${o.modus === "åpen" ? "apen" : o.modus}`}>{MODUS_TEKST[o.modus]}</span>
+    <a className="rad" href={`#/o/${o.slug}`}>
+      <div className="rad-topp">
+        <h3>{o.navn}</h3>
+        <span className="modus">
+          <ModusGlyf modus={o.modus} />
+          {MODUS_TEKST[o.modus]}
+        </span>
       </div>
-      <p className="beskr">{o.beskrivelse}</p>
-      <div className="meta mono">
-        <span>{tall(o.kaffe)} g / {o.vann} g</span>
-        <span>{ratio(o)}</span>
-        <span>ZP6 {tall(o.malegrad.toFixed(1))}</span>
-        <span>{o.tid}</span>
-      </div>
-      <div className="mini">
+      <p className="rad-beskr">{o.beskrivelse}</p>
+      <dl className="rad-data">
+        <div><dt>Kaffe</dt><dd>{tall(o.kaffe)} g</dd></div>
+        <div><dt>Vann</dt><dd>{o.vann} g</dd></div>
+        <div><dt>Ratio</dt><dd>{ratio(o)}</dd></div>
+        <div><dt>ZP6</dt><dd>{tall(o.malegrad.toFixed(1))}</dd></div>
+        <div><dt>Tid</dt><dd>{o.tid}</dd></div>
+      </dl>
+      <div className="rad-karakter">
         {KARAKTER.map(([k, navn]) => (
-          <div key={k} className="mini-rad">
-            <span className="mono">{navn}</span>
+          <span key={k}>
+            <span className="rad-karakter-navn">{navn}</span>
             <Prikker verdi={o.karakter[k]} navn={navn} />
-          </div>
+          </span>
         ))}
       </div>
     </a>
@@ -46,11 +50,12 @@ function Kort({ o }) {
 function Filter({ valg, aktiv, sett, tekst, etikett }) {
   return (
     <div className="filter" role="group" aria-label={etikett}>
-      <button className={`pill ${aktiv === null ? "on" : ""}`} onClick={() => sett(null)} aria-pressed={aktiv === null}>
+      <span className="stempel">{etikett}</span>
+      <button className={`bryter ${aktiv === null ? "on" : ""}`} onClick={() => sett(null)} aria-pressed={aktiv === null}>
         Alle
       </button>
       {valg.map((v) => (
-        <button key={v} className={`pill ${aktiv === v ? "on" : ""}`} onClick={() => sett(aktiv === v ? null : v)} aria-pressed={aktiv === v}>
+        <button key={v} className={`bryter ${aktiv === v ? "on" : ""}`} onClick={() => sett(aktiv === v ? null : v)} aria-pressed={aktiv === v}>
           {tekst[v]}
         </button>
       ))}
@@ -69,23 +74,23 @@ function Oversikt() {
   return (
     <>
       <header className="hero">
-        <p className="eyebrow">Hario Switch · ZP6 · {oppskrifter.length} oppskrifter</p>
-        <h1>Kaffeoppskrifter</h1>
+        <p className="stempel">Hario Switch · 1Zpresso ZP6 · {oppskrifter.length} oppskrifter</p>
+        <h1>Bryggejournal</h1>
         <p className="lead">
-          Alle oppskriftene brygges på Hario Switch og er sortert fra lett til avansert. Tidene er faste tidspunkt fra
-          første helling, og vektene er totalvekt på vekta.
+          Ni pour-over-oppskrifter, sortert fra lett til avansert. Tidene er faste tidspunkt fra første helling,
+          og hver vekt er totalvekt på vekta — ikke mengden du heller i det steget.
         </p>
       </header>
 
       <details className="utstyr">
         <summary>
-          <span className="eyebrow">Utstyr</span>
-          <span className="sub">{utstyr.map((u) => u.modell.split(" (")[0]).join(" · ")}</span>
+          <span className="stempel">Utstyr</span>
+          <span className="utstyr-liste">{utstyr.map((u) => u.modell.split(" (")[0]).join(", ")}</span>
         </summary>
         <dl>
           {utstyr.map((u) => (
             <div key={u.utstyr} className="utstyr-rad">
-              <dt className="mono">{u.utstyr}</dt>
+              <dt>{u.utstyr}</dt>
               <dd>
                 <strong>{u.modell}</strong>
                 <span>{u.tips}</span>
@@ -97,7 +102,7 @@ function Oversikt() {
 
       <div className="filtre">
         <Filter valg={NIVAER} aktiv={niva} sett={setNiva} tekst={NIVA_TEKST} etikett="Nivå" />
-        <Filter valg={MODUSER} aktiv={modus} sett={setModus} tekst={MODUS_TEKST} etikett="Switch-modus" />
+        <Filter valg={MODUSER} aktiv={modus} sett={setModus} tekst={MODUS_TEKST} etikett="Modus" />
       </div>
 
       {NIVAER.map((n) => {
@@ -105,36 +110,64 @@ function Oversikt() {
         if (!liste.length) return null
         return (
           <section key={n} className="gruppe" aria-labelledby={`g-${n}`}>
-            <h2 id={`g-${n}`} className="eyebrow">{NIVA_TEKST[n]}</h2>
-            <div className="grid">
-              {liste.map((o) => <Kort key={o.slug} o={o} />)}
+            <h2 id={`g-${n}`} className="stempel gruppe-tittel">
+              {NIVA_TEKST[n]}<span className="gruppe-tall">{liste.length}</span>
+            </h2>
+            <div className="rader">
+              {liste.map((o) => <Rad key={o.slug} o={o} />)}
             </div>
           </section>
         )
       })}
-      {!synlige.length && <p className="sub tom">Ingen oppskrifter passer filteret.</p>}
+
+      {!synlige.length && (
+        <div className="tom">
+          <p>Ingen oppskrifter er både <strong>{NIVA_TEKST[niva]?.toLowerCase()}</strong> og <strong>{MODUS_TEKST[modus]?.toLowerCase()}</strong>.</p>
+          <button className="bryter" onClick={() => { setNiva(null); setModus(null) }}>Nullstill filtrene</button>
+        </div>
+      )}
     </>
+  )
+}
+
+function FinnesIkke({ slug }) {
+  return (
+    <div className="tom">
+      <p className="stempel">Finner ikke</p>
+      <p>Det er ingen oppskrift som heter <code>{slug}</code>. Den kan ha byttet navn.</p>
+      <a className="bryter" href="#/">Se alle oppskriftene</a>
+    </div>
   )
 }
 
 export default function App() {
   const hash = useHash()
   const slug = hash.startsWith("#/o/") ? decodeURIComponent(hash.slice(4)) : null
-  const valgt = slug && oppskrifter.find((o) => o.slug === slug)
+  const valgt = slug ? oppskrifter.find((o) => o.slug === slug) : null
 
   useEffect(() => {
-    document.title = valgt ? `${valgt.navn} — Kaffeoppskrifter` : "Kaffeoppskrifter — Benjamin Thorsen Papp"
+    document.title = valgt ? `${valgt.navn} — Bryggejournal` : "Bryggejournal — Hario Switch"
     window.scrollTo(0, 0)
-  }, [valgt])
+  }, [valgt, slug])
 
   return (
     <>
+      <a className="hopp" href="#main">Hopp til innholdet</a>
       <nav className="nav">
-        <a className="brand mono" href="#/">kaffe<span>.</span></a>
-        <a className="mono sub" href="https://benjaminpapp.github.io/portefolje/">Portefølje ↗</a>
+        <a className="merke" href="#/" aria-current={slug ? undefined : "page"}>
+          Bryggejournal
+        </a>
+        <a className="nav-ut" href="https://benjaminpapp.github.io/portefolje/">Portefølje</a>
       </nav>
-      <main id="main">{valgt ? <Oppskrift o={valgt} /> : <Oversikt />}</main>
-      <footer className="mono sub">Benjamin Thorsen Papp · Mandal</footer>
+      <main id="main">
+        {slug && !valgt && <FinnesIkke slug={slug} />}
+        {valgt && <Oppskrift o={valgt} />}
+        {!slug && <Oversikt />}
+      </main>
+      <footer>
+        <span>Benjamin Thorsen Papp</span>
+        <span>Mandal</span>
+      </footer>
     </>
   )
 }
