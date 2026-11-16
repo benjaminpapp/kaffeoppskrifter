@@ -157,7 +157,6 @@ export default function App() {
         <a className="merke" href="#/" aria-current={slug ? undefined : "page"}>
           Bryggejournal
         </a>
-        <a className="nav-ut" href="https://benjaminpapp.github.io/portefolje/">Portefølje</a>
       </nav>
       <main id="main">
         {slug && !valgt && <FinnesIkke slug={slug} />}

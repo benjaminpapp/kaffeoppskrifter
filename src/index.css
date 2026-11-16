@@ -87,13 +87,6 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
   font-variation-settings:"SOFT" 25,"WONK" 1,"opsz" 24;letter-spacing:-.015em;
 }
 .merke[aria-current="page"]{box-shadow:0 2px 0 var(--kopper);}
-.nav-ut{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
-  letter-spacing:.06em;color:var(--ink-sub);padding-bottom:2px;
-  border-bottom:1px solid var(--rule-sterk);transition:color .2s,border-color .2s;
-}
-.nav-ut:hover{color:var(--ink);border-color:var(--kopper);}
-.nav-ut::after{content:" \2197";}
 footer{
   display:flex;justify-content:space-between;
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
