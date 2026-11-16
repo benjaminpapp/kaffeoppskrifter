@@ -9,10 +9,24 @@ export const MODUSER = ["åpen", "lukket", "hybrid"]
 
 const navnFraSti = (sti) => sti.split("/").pop().replace(/\.yml$/, "")
 
-export const oppskrifter = Object.entries(filer)
-  .filter(([sti]) => !navnFraSti(sti).startsWith("_"))
-  .map(([sti, raw]) => ({ slug: navnFraSti(sti), ...parse(raw) }))
-  .sort((a, b) => NIVAER.indexOf(a.niva) - NIVAER.indexOf(b.niva) || a.navn.localeCompare(b.navn, "no"))
+// Nivået gir fargefamilien, og plassen i nivået gir avskyggingen innenfor
+// den. Rustaksenten ligger på ~16°, så kortfargene holder seg kjølige —
+// varmt forblir eksklusivt for aksenten.
+const NIVA_HUE = { lett: 198, middels: 135, avansert: 288 }
+const HUE_DRIFT = 9
+
+export const oppskrifter = (() => {
+  const sortert = Object.entries(filer)
+    .filter(([sti]) => !navnFraSti(sti).startsWith("_"))
+    .map(([sti, raw]) => ({ slug: navnFraSti(sti), ...parse(raw) }))
+    .sort((a, b) => NIVAER.indexOf(a.niva) - NIVAER.indexOf(b.niva) || a.navn.localeCompare(b.navn, "no"))
+
+  const tell = {}
+  return sortert.map((o) => {
+    const i = (tell[o.niva] = (tell[o.niva] ?? -1) + 1)
+    return { ...o, hue: (NIVA_HUE[o.niva] ?? 198) + i * HUE_DRIFT }
+  })
+})()
 
 export const utstyr = parse(filer["../oppskrifter/_utstyr.yml"] ?? "[]") ?? []
 

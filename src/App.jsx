@@ -21,7 +21,7 @@ const SMAK_TEKST = { syre: "Syre", sodme: "Sødme", fylde: "Fylde", klarhet: "Kl
 
 function Rad({ o, fremhev, visNiva }) {
   return (
-    <a className="rad" href={`#/o/${o.slug}`}>
+    <a className="rad" href={`#/o/${o.slug}`} style={{ "--h": `${o.hue}deg` }}>
       <div className="rad-topp">
         <h3>{o.navn}</h3>
         <span className="rad-merker">

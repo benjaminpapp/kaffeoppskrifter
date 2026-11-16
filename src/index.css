@@ -14,7 +14,7 @@
   --ground:#eceef0;
   --raised:#f6f7f8;
   --ink:#1a1f24;
-  --ink-sub:#5c666f;
+  --ink-sub:#4c565f;
   --rule:#d6dadd;
   --rule-sterk:#bfc5ca;
   --rust:#a8432a;
@@ -24,7 +24,9 @@
   --korn:.03;
 
   --maaleflate:68ch;
-  --maxw:760px;
+  --maxw:880px;
+  --kort-a:.14;
+  --kort-a-hover:.26;
   --z-fast:10;
   --z-korn:100;
 }
@@ -33,7 +35,7 @@
     --ground:#11161b;
     --raised:#171d23;
     --ink:#e6eaed;
-    --ink-sub:#97a2ab;
+    --ink-sub:#adb8c0;
     --rule:#242c33;
     --rule-sterk:#333d45;
     --rust:#d4694a;
@@ -41,6 +43,8 @@
     --rust-vask:rgba(212,105,74,.08);
     --skygge:rgba(0,0,0,.45);
     --korn:.045;
+    --kort-a:.16;
+    --kort-a-hover:.28;
   }
 }
 
@@ -153,7 +157,7 @@ h1{
 
 /* ---------- filtre: tekstbrytere, ikke piller ---------- */
 .filtre{display:flex;flex-direction:column;gap:4px;margin-bottom:34px;}
-.filter{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.filter{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
 .filter .stempel{margin-right:4px;min-width:52px;}
 /* 44px høy og 8px fra naboen: dette betjenes med én hånd mens den andre
    holder kjelen, så brytere på 28px med 6px mellomrom var for trangt. */
@@ -184,15 +188,29 @@ h1{
   border:1px solid var(--rule-sterk);padding:2px 7px;letter-spacing:.04em;
   font-variant-numeric:tabular-nums;
 }
-.rader{display:flex;flex-direction:column;}
+.rader{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+/* Fargen kommer fra nivået, avskyggingen fra plassen i nivået. Flaten er
+   en gjennomsiktig tone over --raised, så kontrasten til teksten følger
+   temaet av seg selv: mer alfa blir mørkere i lys modus og lysere i mørk. */
 .rad{
   display:flex;flex-direction:column;gap:9px;
-  padding:20px 14px 20px 16px;margin-left:-16px;margin-right:-14px;
-  border-top:1px solid var(--rule);
-  box-shadow:inset 2px 0 0 transparent;
-  transition:background-color .2s,box-shadow .2s;
+  padding:18px 18px 20px;border-radius:3px;
+  background:
+    linear-gradient(140deg,
+      hsl(var(--h) 58% 48% / var(--kort-a)),
+      hsl(var(--h) 52% 44% / calc(var(--kort-a) * .22)) 72%),
+    var(--raised);
+  box-shadow:inset 0 0 0 1px var(--rule);
+  transition:background .2s,box-shadow .2s;
 }
-.rad:hover{background:var(--rust-vask);box-shadow:inset 2px 0 0 var(--rust);}
+.rad:hover{
+  background:
+    linear-gradient(140deg,
+      hsl(var(--h) 60% 48% / var(--kort-a-hover)),
+      hsl(var(--h) 54% 44% / calc(var(--kort-a-hover) * .26)) 72%),
+    var(--raised);
+  box-shadow:inset 0 0 0 1px hsl(var(--h) 42% 50% / .5);
+}
 .rad:active{transform:translateY(1px);}
 .rad-topp{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
 .rad h3{
@@ -450,6 +468,9 @@ h1{
 .tom .bryter{border-bottom-color:var(--rust);color:var(--ink);}
 
 /* ---------- smått ---------- */
+@media (max-width:760px){
+  .rader{grid-template-columns:1fr;}
+}
 @media (max-width:620px){
   .params{grid-template-columns:repeat(2,1fr);}
   .params div:nth-child(3n){border-right:1px solid var(--rule);}
