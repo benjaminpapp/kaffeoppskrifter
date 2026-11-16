@@ -1,0 +1,36 @@
+navn: Coffee 365 Full Immersion
+niva: middels
+modus: lukket
+brygger: Hario Switch (lukket)
+beskrivelse: Én fylling, skorpebrekk og et langt trekk før avrenningen slippes. Tett ratio på 1:12,5 gir en kraftig og tung kopp.
+kaffe: 18
+vann: 225
+temp: 94 °C
+malegrad: 6.0
+tid: ca. 3:25
+karakter:
+  syre: 2
+  sodme: 4
+  fylde: 5
+  klarhet: 3
+steg:
+  - tid: "0:00"
+    tekst: Switch **lukket**. Hell rolig opp til **225 g**
+  - tid: "0:35"
+    tekst: Bryt skorpen med en skje
+  - tid: "0:45"
+    tekst: La det trekke
+  - tid: "2:30"
+    tekst: "**Åpne** Switch"
+  - tid: "3:25"
+    ca: true
+    tekst: Ferdig når det slutter å dryppe. Løft av bryggeren
+notater: >-
+  Kilden oppgir Comandante C40 på 22 klikk. ZP6-tallet er omregnet mellom to
+  kverner med ulik skala og bør finjusteres. Oppskriften kommer fra en
+  YouTube-kanal og er hentet via Gota — jeg fant ikke originalvideoen, så
+  kjeden er kortere verifisert enn de andre her. Karakteren er anslått ut fra
+  metoden, ikke smakt.
+kilde:
+  navn: Coffee 365 (Gota)
+  url: https://gota.cafe/en/recipes/v60-neo-02/coffee365-full-immersion
