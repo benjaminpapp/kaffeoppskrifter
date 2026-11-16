@@ -92,8 +92,8 @@ function Oversikt() {
         <p className="stempel">Hario Switch og 1Zpresso ZP6 · {oppskrifter.length} oppskrifter</p>
         <h1>Bryggejournal</h1>
         <p className="lead">
-          Alle oppskriftene brygges på Hario Switch. Tidene er faste tidspunkt fra første helling, og hver vekt
-          er totalvekt på vekta — ikke mengden du heller i det steget.
+          Oppskrifter til brygg av god kaffe på Hario Switch. Tidene er faste tidspunkt fra første helling,
+          og vektene er totalvekt — ikke mengden du heller i hvert steg.
         </p>
       </header>
 
