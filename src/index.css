@@ -142,12 +142,9 @@ main{max-width:var(--maxw);margin:0 auto;padding:0 24px 72px;}
 }
 
 /* ---------- hero ---------- */
-.hero{padding:38px 0 26px;margin-bottom:18px;}
-/* Ingressen står alene her nå, så den midtstilles mot siden. Målelinja er
-   kortere enn ellers: midtstilt tekst blir tyngre å lese på full bredde. */
-.hero .lead{
-  max-width:54ch;margin-inline:auto;text-align:center;
-}
+/* Hero-en holder bare den skjulte overskriften nå. Den gir luft mellom
+   ordmerket og filtrene. */
+.hero{padding:0 0 30px;}
 /* h1 setter i praksis bare oppskriftsnavnet, siden hero-overskriften er
    skjult. Den deler serif med ordmerket. */
 h1{
@@ -159,29 +156,6 @@ h1{
   margin:0;color:var(--ink-sub);font-size:16.5px;max-width:var(--maaleflate);
   text-wrap:pretty;
 }
-
-/* ---------- utstyr ---------- */
-.utstyr{padding-bottom:4px;margin-bottom:30px;}
-.utstyr summary{
-  list-style:none;cursor:pointer;display:flex;flex-direction:column;gap:5px;
-  padding:4px 0 14px;
-}
-.utstyr summary::-webkit-details-marker{display:none;}
-.utstyr summary .stempel::after{content:" +";}
-.utstyr[open] summary .stempel::after{content:" \2013";}
-.utstyr-liste{font-size:14px;color:var(--ink-sub);}
-.utstyr summary:hover .utstyr-liste{color:var(--ink);}
-.utstyr dl{margin:0;padding-top:4px;}
-.utstyr-rad{
-  display:grid;grid-template-columns:96px 1fr;gap:4px 16px;
-  padding:0 0 15px;
-}
-.utstyr-rad dt{
-  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);padding-top:3px;
-}
-.utstyr-rad dd{margin:0;display:flex;flex-direction:column;gap:3px;font-size:14.5px;}
-.utstyr-rad dd span{color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;}
 
 /* ---------- filtre: tekstbrytere, ikke piller ---------- */
 /* Alle tre filtrene deler ett rutenett: etikettene i én kolonne,
@@ -501,7 +475,6 @@ h1{
 @media (max-width:620px){
   .params{grid-template-columns:repeat(2,1fr);}
   .karakter-rader{grid-template-columns:1fr;}
-  .utstyr-rad{grid-template-columns:1fr;gap:4px;}
   .rad-topp{flex-direction:column;align-items:flex-start;gap:6px;}
   .steg li{grid-template-columns:64px 1fr;gap:12px;}
   .tt-tid{font-size:38px;}

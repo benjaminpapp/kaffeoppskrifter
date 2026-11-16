@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react"
-import { oppskrifter, utstyr, NIVAER, MODUSER, ratio, tall } from "./data"
+import { oppskrifter, NIVAER, MODUSER, ratio, tall } from "./data"
 import Oppskrift from "./Oppskrift"
 import { Prikker, ModusGlyf, KARAKTER } from "./ui"
 import PatternWaves from "./PatternWaves"
@@ -150,29 +150,7 @@ function Oversikt() {
         {/* Synlig overskrift er fjernet, men siden trenger en h1 for
             dokumentstruktur og skjermlesere. */}
         <h1 className="skjult">Kaffeoppskrifter for Hario Switch</h1>
-        <p className="lead">
-          Oppskrifter til brygg av god kaffe på Hario Switch. Tidene er faste tidspunkt fra første helling,
-          og vektene er totalvekt — ikke mengden du heller i hvert steg.
-        </p>
       </header>
-
-      <details className="utstyr">
-        <summary>
-          <span className="stempel">Utstyr</span>
-          <span className="utstyr-liste">{utstyr.map((u) => u.modell.split(" (")[0]).join(", ")}</span>
-        </summary>
-        <dl>
-          {utstyr.map((u) => (
-            <div key={u.utstyr} className="utstyr-rad">
-              <dt>{u.utstyr}</dt>
-              <dd>
-                <strong>{u.modell}</strong>
-                <span>{u.tips}</span>
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </details>
 
       <div className="filtre">
         <Filter valg={NIVAER} aktiv={niva} sett={setNiva} tekst={NIVA_TEKST} etikett="Nivå" />

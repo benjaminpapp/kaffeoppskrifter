@@ -37,9 +37,13 @@ git push origin --delete gh-pages
 ```
 
 Filnavnet er adressen: `oppskrifter/double.yml` → `#/o/double`. Filer som starter
-med `_` er ikke oppskrifter — [`_utstyr.yml`](oppskrifter/_utstyr.yml) er utstyret
-som vises øverst på siden, [`_mal.yml.example`](oppskrifter/_mal.yml.example) er
-malen for en ny oppskrift.
+med `_` er ikke oppskrifter — [`_mal.yml.example`](oppskrifter/_mal.yml.example)
+er malen for en ny oppskrift.
+
+Utstyr hører hjemme i oppskriften selv, ikke i en felles liste. Hver oppskrift
+oppgir sin egen brygger, malegrad og temperatur, så en ny oppskrift tar med det
+den trenger. [`_utstyr.yml`](oppskrifter/_utstyr.yml) leses ikke lenger av noe,
+men ligger igjen fordi notatene der fortsatt er verdt å ha.
 
 ## Oppskriftsformat
 

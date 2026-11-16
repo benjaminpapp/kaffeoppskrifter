@@ -28,8 +28,6 @@ export const oppskrifter = (() => {
   })
 })()
 
-export const utstyr = parse(filer["../oppskrifter/_utstyr.yml"] ?? "[]") ?? []
-
 export const ratio = (o) => `1:${(o.vann / o.kaffe).toFixed(1).replace(".0", "").replace(".", ",")}`
 export const tall = (n) => String(n).replace(".", ",")
 export const sekunder = (mmss) => {
