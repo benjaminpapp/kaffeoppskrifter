@@ -189,6 +189,16 @@ h1{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);
 }
+.rad-karakter .fremhevet .rad-karakter-navn{color:var(--ink);}
+
+/* Nivå vises på raden bare når smakssortering har slått gruppene sammen,
+   så klassifiseringen ikke går tapt med seksjonsoverskriftene. */
+.rad-merker{display:inline-flex;align-items:center;gap:12px;flex-shrink:0;}
+.rad-niva{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-sub);
+  border:1px solid var(--rule-sterk);padding:1px 6px;
+}
 
 /* ---------- modus: form, ikke ekstra farge ---------- */
 .modus{
@@ -202,9 +212,10 @@ h1{
 .modus-stor{font-size:12px;margin-top:4px;}
 
 /* ---------- hakk-karakter ---------- */
-.hakk{display:inline-flex;gap:3px;}
+.hakk{display:inline-flex;gap:3px;align-items:center;}
 .hakk .h{width:9px;height:3px;background:var(--rule-sterk);}
 .hakk .h.on{background:var(--kopper);}
+.hakk.sterk .h{height:6px;}
 
 /* ---------- oppskrift ---------- */
 .oppskrift{padding-top:6px;}

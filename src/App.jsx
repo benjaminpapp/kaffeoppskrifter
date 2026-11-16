@@ -16,15 +16,20 @@ function useHash() {
 
 const NIVA_TEKST = { lett: "Lett", middels: "Middels", avansert: "Avansert" }
 const MODUS_TEKST = { "åpen": "Åpen", lukket: "Lukket", hybrid: "Hybrid" }
+const SMAKER = ["syre", "sodme", "fylde", "klarhet"]
+const SMAK_TEKST = { syre: "Syre", sodme: "Sødme", fylde: "Fylde", klarhet: "Klarhet" }
 
-function Rad({ o }) {
+function Rad({ o, fremhev, visNiva }) {
   return (
     <a className="rad" href={`#/o/${o.slug}`}>
       <div className="rad-topp">
         <h3>{o.navn}</h3>
-        <span className="modus">
-          <ModusGlyf modus={o.modus} />
-          {MODUS_TEKST[o.modus]}
+        <span className="rad-merker">
+          {visNiva && <span className="rad-niva">{NIVA_TEKST[o.niva]}</span>}
+          <span className="modus">
+            <ModusGlyf modus={o.modus} />
+            {MODUS_TEKST[o.modus]}
+          </span>
         </span>
       </div>
       <p className="rad-beskr">{o.beskrivelse}</p>
@@ -37,9 +42,9 @@ function Rad({ o }) {
       </dl>
       <div className="rad-karakter">
         {KARAKTER.map(([k, navn]) => (
-          <span key={k}>
+          <span key={k} className={k === fremhev ? "fremhevet" : ""}>
             <span className="rad-karakter-navn">{navn}</span>
-            <Prikker verdi={o.karakter[k]} navn={navn} />
+            <Prikker verdi={o.karakter[k]} navn={navn} sterk={k === fremhev} />
           </span>
         ))}
       </div>
@@ -47,12 +52,12 @@ function Rad({ o }) {
   )
 }
 
-function Filter({ valg, aktiv, sett, tekst, etikett }) {
+function Filter({ valg, aktiv, sett, tekst, etikett, nullTekst = "Alle" }) {
   return (
     <div className="filter" role="group" aria-label={etikett}>
       <span className="stempel">{etikett}</span>
       <button className={`bryter ${aktiv === null ? "on" : ""}`} onClick={() => sett(null)} aria-pressed={aktiv === null}>
-        Alle
+        {nullTekst}
       </button>
       {valg.map((v) => (
         <button key={v} className={`bryter ${aktiv === v ? "on" : ""}`} onClick={() => sett(aktiv === v ? null : v)} aria-pressed={aktiv === v}>
@@ -66,9 +71,19 @@ function Filter({ valg, aktiv, sett, tekst, etikett }) {
 function Oversikt() {
   const [niva, setNiva] = useState(null)
   const [modus, setModus] = useState(null)
+  const [smak, setSmak] = useState(null)
+
   const synlige = useMemo(
     () => oppskrifter.filter((o) => (!niva || o.niva === niva) && (!modus || o.modus === modus)),
     [niva, modus]
+  )
+
+  // Smak sorterer, den filtrerer ikke: med ni oppskrifter gir terskler fort
+  // null treff (ingen har f.eks. både syre og sødme på 4+), og en tom side
+  // hjelper ingen. Her flyttes det du vil ha øverst i stedet.
+  const rangert = useMemo(
+    () => (smak ? [...synlige].sort((a, b) => b.karakter[smak] - a.karakter[smak] || a.navn.localeCompare(b.navn, "no")) : synlige),
+    [synlige, smak]
   )
 
   return (
@@ -103,9 +118,22 @@ function Oversikt() {
       <div className="filtre">
         <Filter valg={NIVAER} aktiv={niva} sett={setNiva} tekst={NIVA_TEKST} etikett="Nivå" />
         <Filter valg={MODUSER} aktiv={modus} sett={setModus} tekst={MODUS_TEKST} etikett="Modus" />
+        <Filter valg={SMAKER} aktiv={smak} sett={setSmak} tekst={SMAK_TEKST} etikett="Smak" nullTekst="Ingen" />
       </div>
 
-      {NIVAER.map((n) => {
+      {smak && !!rangert.length && (
+        <section className="gruppe" aria-labelledby="g-smak">
+          <h2 id="g-smak" className="stempel gruppe-tittel">
+            Mest {SMAK_TEKST[smak].toLowerCase()}
+            <span className="gruppe-tall">{rangert.length}</span>
+          </h2>
+          <div className="rader">
+            {rangert.map((o) => <Rad key={o.slug} o={o} fremhev={smak} visNiva />)}
+          </div>
+        </section>
+      )}
+
+      {!smak && NIVAER.map((n) => {
         const liste = synlige.filter((o) => o.niva === n)
         if (!liste.length) return null
         return (
@@ -122,7 +150,12 @@ function Oversikt() {
 
       {!synlige.length && (
         <div className="tom">
-          <p>Ingen oppskrifter er både <strong>{NIVA_TEKST[niva]?.toLowerCase()}</strong> og <strong>{MODUS_TEKST[modus]?.toLowerCase()}</strong>.</p>
+          <p>
+            Ingen oppskrifter er{" "}
+            {[niva && NIVA_TEKST[niva].toLowerCase(), modus && MODUS_TEKST[modus].toLowerCase()]
+              .filter(Boolean)
+              .map((t, i, a) => <span key={t}>{i > 0 && " og "}<strong>{t}</strong></span>)}.
+          </p>
           <button className="bryter" onClick={() => { setNiva(null); setModus(null) }}>Nullstill filtrene</button>
         </div>
       )}

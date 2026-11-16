@@ -6,9 +6,11 @@ export const KARAKTER = [
 ]
 
 // Karakteren settes som på et cupping-skjema: fem hakk, ikke en fargeskala.
-export function Prikker({ verdi, navn }) {
+// «sterk» fremhever attributtet lista er sortert på, så rekkefølgen er
+// synlig begrunnet i stedet for å virke tilfeldig.
+export function Prikker({ verdi, navn, sterk }) {
   return (
-    <span className="hakk" role="img" aria-label={`${navn}: ${verdi} av 5`}>
+    <span className={sterk ? "hakk sterk" : "hakk"} role="img" aria-label={`${navn}: ${verdi} av 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <span key={i} className={i <= verdi ? "h on" : "h"} />
       ))}
