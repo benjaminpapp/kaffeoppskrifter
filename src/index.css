@@ -5,7 +5,7 @@
    unngått: det er standardpaletten enhver generator når etter på en
    kaffebrief, og siden ble bygget nettopp for å slippe standarder.
    Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
-   Bodoni Moda brukes i ordmerket og gruppeoverskriftene.
+   Bodoni Moda brukes i ordmerket og på oppskriftsnavnene.
 
    Rust er 5,16:1 mot skifer og 5,13:1 mot mørk flate, så aksenten
    holder AA som tekst i begge moduser.
@@ -88,8 +88,8 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 }
 .merke{
   display:inline-flex;align-items:center;min-height:44px;
-  /* Serifen brukes to steder: ordmerket og gruppeoverskriftene. Resten
-     av siden holder seg til Archivo. */
+  /* Serifen brukes to steder: ordmerket og oppskriftsnavnene. Resten av
+     siden holder seg til Archivo. */
   font-family:"Bodoni Moda",Didot,Georgia,serif;
   font-size:clamp(42px,7vw,66px);font-weight:600;letter-spacing:-.01em;line-height:1;
 }
@@ -116,12 +116,11 @@ footer{
 .hero .lead{
   max-width:54ch;margin-inline:auto;text-align:center;
 }
-/* Breddeaksen i stedet for et display-serif-snitt: utstyrsmerking er
-   bred og tett, ikke redaksjonell. */
+/* h1 setter i praksis bare oppskriftsnavnet, siden hero-overskriften er
+   skjult. Den deler serif med ordmerket. */
 h1{
-  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;font-weight:700;
-  font-stretch:118%;
-  font-size:clamp(23px,3.4vw,28px);line-height:1.15;letter-spacing:-.015em;
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:600;
+  font-size:clamp(23px,3.4vw,28px);line-height:1.15;letter-spacing:0;
   margin:0 0 12px;text-wrap:balance;
 }
 .lead{
@@ -175,8 +174,8 @@ h1{
    lista, ikke en etikett, så de har sin egen skala nå. */
 .gruppe-tittel{
   display:flex;align-items:baseline;gap:12px;margin:0 0 6px;
-  font-family:"Bodoni Moda",Didot,Georgia,serif;
-  font-size:28px;font-weight:600;letter-spacing:0;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
+  font-size:26px;font-weight:700;font-stretch:112%;letter-spacing:-.015em;
   color:var(--ink);text-transform:none;
 }
 .gruppe-tall{
@@ -197,9 +196,9 @@ h1{
 .rad:active{transform:translateY(1px);}
 .rad-topp{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
 .rad h3{
-  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
-  font-size:20px;font-weight:650;font-stretch:108%;letter-spacing:-.015em;
-  line-height:1.2;margin:0;text-wrap:balance;
+  font-family:"Bodoni Moda",Didot,Georgia,serif;
+  font-size:21px;font-weight:600;letter-spacing:0;
+  line-height:1.25;margin:0;text-wrap:balance;
 }
 .rad-beskr{margin:0;color:var(--ink-sub);font-size:14.5px;line-height:1.55;max-width:var(--maaleflate);text-wrap:pretty;}
 .rad-data{
