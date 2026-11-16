@@ -79,10 +79,10 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
 
 /* ---------- ramme ---------- */
 main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
-/* Navigasjonen følger ikke innholdskolonnen: ordmerket står helt ute
-   til venstre, som en merking på utsiden av instrumentet. */
+/* Navigasjonen følger ikke innholdskolonnen, men hele bredden, slik at
+   ordmerket midtstilles mot siden og ikke mot tekstspalta. */
 .nav{
-  display:flex;justify-content:flex-start;align-items:center;
+  display:flex;justify-content:center;align-items:center;
   padding:18px 24px 14px;
 }
 .merke{
