@@ -93,7 +93,8 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
   font-family:"Bodoni Moda",Didot,Georgia,serif;
   font-size:20px;font-weight:600;letter-spacing:.01em;
 }
-.merke[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--rust);}
+/* Punktumet bærer aksenten i navigasjonen nå som understreken er borte. */
+.merke-punktum{color:var(--rust);}
 footer{
   display:flex;justify-content:space-between;
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
@@ -110,8 +111,8 @@ footer{
 h1{
   font-family:Archivo,ui-sans-serif,system-ui,sans-serif;font-weight:700;
   font-stretch:118%;
-  font-size:clamp(36px,7.2vw,58px);line-height:1.04;letter-spacing:-.025em;
-  margin:0 0 16px;text-wrap:balance;
+  font-size:clamp(23px,3.4vw,28px);line-height:1.15;letter-spacing:-.015em;
+  margin:0 0 12px;text-wrap:balance;
 }
 .lead{
   margin:0;color:var(--ink-sub);font-size:16.5px;max-width:var(--maaleflate);
