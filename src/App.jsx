@@ -52,19 +52,23 @@ function Rad({ o, fremhev, visNiva }) {
   )
 }
 
+// Etiketten og knappene er søsken, ikke nøstet, slik at alle tre filtrene
+// deler ett rutenett i .filtre og står i linje med hverandre.
 function Filter({ valg, aktiv, sett, tekst, etikett, nullTekst = "Alle" }) {
   return (
-    <div className="filter" role="group" aria-label={etikett}>
-      <span className="stempel">{etikett}</span>
-      <button className={`bryter ${aktiv === null ? "on" : ""}`} onClick={() => sett(null)} aria-pressed={aktiv === null}>
-        {nullTekst}
-      </button>
-      {valg.map((v) => (
-        <button key={v} className={`bryter ${aktiv === v ? "on" : ""}`} onClick={() => sett(aktiv === v ? null : v)} aria-pressed={aktiv === v}>
-          {tekst[v]}
+    <>
+      <span className="stempel filter-etikett">{etikett}</span>
+      <div className="filter-valg" role="group" aria-label={etikett}>
+        <button className={`bryter ${aktiv === null ? "on" : ""}`} onClick={() => sett(null)} aria-pressed={aktiv === null}>
+          {nullTekst}
         </button>
-      ))}
-    </div>
+        {valg.map((v) => (
+          <button key={v} className={`bryter ${aktiv === v ? "on" : ""}`} onClick={() => sett(aktiv === v ? null : v)} aria-pressed={aktiv === v}>
+            {tekst[v]}
+          </button>
+        ))}
+      </div>
+    </>
   )
 }
 
