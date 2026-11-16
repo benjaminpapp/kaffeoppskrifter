@@ -103,9 +103,19 @@ footer{
   border-top:1px solid var(--rule);
 }
 
+/* Synlig for skjermlesere, ikke for øyet. */
+.skjult{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;
+}
+
 /* ---------- hero ---------- */
-.hero{padding:14px 0 34px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
-.hero .stempel{margin-bottom:16px;}
+.hero{padding:4px 0 30px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+/* Ingressen står alene her nå, så den midtstilles mot siden. Målelinja er
+   kortere enn ellers: midtstilt tekst blir tyngre å lese på full bredde. */
+.hero .lead{
+  max-width:54ch;margin-inline:auto;text-align:center;
+}
 /* Breddeaksen i stedet for et display-serif-snitt: utstyrsmerking er
    bred og tett, ikke redaksjonell. */
 h1{
@@ -161,12 +171,19 @@ h1{
 
 /* ---------- journalrader ---------- */
 .gruppe{margin-bottom:40px;}
+/* Gruppeoverskriftene var stempler på 10,5 px. De er navigasjon gjennom
+   lista, ikke en etikett, så de har sin egen skala nå. */
 .gruppe-tittel{
-  display:flex;align-items:center;gap:10px;margin:0 0 2px;font-weight:500;
+  display:flex;align-items:baseline;gap:12px;margin:0 0 6px;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
+  font-size:26px;font-weight:700;font-stretch:112%;letter-spacing:-.015em;
+  color:var(--ink);text-transform:none;
 }
 .gruppe-tall{
-  font-size:10px;color:var(--ink-sub);border:1px solid var(--rule-sterk);
-  padding:1px 5px;letter-spacing:.04em;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12px;font-weight:400;color:var(--ink-sub);
+  border:1px solid var(--rule-sterk);padding:2px 7px;letter-spacing:.04em;
+  font-variant-numeric:tabular-nums;
 }
 .rader{display:flex;flex-direction:column;}
 .rad{

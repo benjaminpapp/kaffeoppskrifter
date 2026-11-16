@@ -89,8 +89,9 @@ function Oversikt() {
   return (
     <>
       <header className="hero">
-        <p className="stempel">Hario Switch og 1Zpresso ZP6 · {oppskrifter.length} oppskrifter</p>
-        <h1>Bryggejournal</h1>
+        {/* Synlig overskrift er fjernet, men siden trenger en h1 for
+            dokumentstruktur og skjermlesere. */}
+        <h1 className="skjult">Kaffeoppskrifter for Hario Switch</h1>
         <p className="lead">
           Oppskrifter til brygg av god kaffe på Hario Switch. Tidene er faste tidspunkt fra første helling,
           og vektene er totalvekt — ikke mengden du heller i hvert steg.
@@ -123,7 +124,7 @@ function Oversikt() {
 
       {smak && !!rangert.length && (
         <section className="gruppe" aria-labelledby="g-smak">
-          <h2 id="g-smak" className="stempel gruppe-tittel">
+          <h2 id="g-smak" className="gruppe-tittel">
             Mest {SMAK_TEKST[smak].toLowerCase()}
             <span className="gruppe-tall">{rangert.length}</span>
           </h2>
@@ -138,7 +139,7 @@ function Oversikt() {
         if (!liste.length) return null
         return (
           <section key={n} className="gruppe" aria-labelledby={`g-${n}`}>
-            <h2 id={`g-${n}`} className="stempel gruppe-tittel">
+            <h2 id={`g-${n}`} className="gruppe-tittel">
               {NIVA_TEKST[n]}<span className="gruppe-tall">{liste.length}</span>
             </h2>
             <div className="rader">
