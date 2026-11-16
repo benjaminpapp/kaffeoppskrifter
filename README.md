@@ -19,10 +19,18 @@ forrige versjon blir stående.
 
 Dette er en midlertidig vei utenom GitHub Actions. Workflowen i
 [`deploy.yml`](.github/workflows/deploy.yml) gjør det samme ved push til `main`,
-men kjøringene avvises for tiden med «account is locked due to a billing issue»,
-uten at det finnes noe utestående på kontoen. Når de går gjennom igjen:
+men kjøringene avvises med «account is locked due to a billing issue», uten at
+det finnes noe utestående på kontoen.
+
+**Workflowen er derfor slått av** (`disabled_manually`). Den feilet ved hver
+push og sendte e-post hver gang, uten å kunne publisere noe. Kjøringen
+`pages-build-deployment` står fortsatt aktiv — det er den som faktisk bygger
+siden fra `gh-pages`.
+
+Slik settes alt tilbake når Actions virker igjen:
 
 ```bash
+gh workflow enable deploy.yml
 gh api -X PUT repos/benjaminpapp/kaffeoppskrifter/pages \
   --input - <<< '{"build_type":"workflow"}'
 git push origin --delete gh-pages

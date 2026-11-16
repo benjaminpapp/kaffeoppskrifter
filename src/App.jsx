@@ -188,7 +188,7 @@ export default function App() {
       <a className="hopp" href="#main">Hopp til innholdet</a>
       <nav className="nav">
         <a className="merke" href="#/" aria-current={slug ? undefined : "page"}>
-          Kaffeoppskrifter<span className="merke-punktum">.</span>
+          brygg<span className="merke-punktum">.</span>
         </a>
       </nav>
       <main id="main">
