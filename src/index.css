@@ -171,14 +171,24 @@ h1{
 /* 44px høy og 8px fra naboen: dette betjenes med én hånd mens den andre
    holder kjelen, så brytere på 28px med 6px mellomrom var for trangt. */
 .bryter{
+  position:relative;
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:13px;
   letter-spacing:.04em;color:var(--ink-sub);padding:0 9px;
   min-height:44px;display:inline-flex;align-items:center;
-  box-shadow:inset 0 -1.5px 0 transparent;
-  transition:color .2s,box-shadow .2s;
+  transition:color .2s;
 }
-.bryter:hover{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--rule-sterk);}
-.bryter.on{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--rust);}
+/* Streken henger på teksten, ikke på bunnen av boksen. Knappen er 44px
+   høy for tommelen, og en inset-skygge ville lagt streken langt under
+   ordet. */
+.bryter::after{
+  content:"";position:absolute;left:9px;right:9px;
+  top:calc(50% + 0.8em);height:1.5px;
+  background:transparent;transition:background-color .2s;
+}
+.bryter:hover{color:var(--ink);}
+.bryter:hover::after{background:var(--rule-sterk);}
+.bryter.on{color:var(--ink);}
+.bryter.on::after{background:var(--rust);}
 .bryter:active{background:var(--rust-vask);}
 
 /* ---------- journalrader ---------- */
@@ -326,7 +336,7 @@ h1{
   border-left:1px solid var(--rule-sterk);border-right:1px solid var(--rule-sterk);
   align-self:stretch;display:inline-flex;align-items:center;justify-content:center;
 }
-.porsjoner-nullstill{box-shadow:inset 0 -1.5px 0 var(--rule-sterk);}
+.porsjoner-nullstill::after{background:var(--rule-sterk);}
 
 /* Bare de faktisk skalerte tallene markeres. Temp, malegrad og tid står
    urørt, og må ikke se ut som om de fulgte med. */
@@ -466,7 +476,8 @@ h1{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;
   background:var(--rust-vask);padding:1px 5px;
 }
-.tom .bryter{border-bottom-color:var(--rust);color:var(--ink);}
+.tom .bryter{color:var(--ink);}
+.tom .bryter::after{background:var(--rust);}
 
 /* ---------- smått ---------- */
 @media (max-width:760px){
