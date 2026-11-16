@@ -1,25 +1,26 @@
 /* =====================================================================
-   Bryggejournal — egen identitet, ikke porteføljens.
-   Porselen og grafitt med én dempet kopperaksent fra svanehalskjelen.
-   Satt som et cupping-skjema: hårfine linjer, stemplede etiketter,
-   tabulære tall. Fraunces + Instrument Sans + IBM Plex Mono.
+   Bryggejournal — et instrument, ikke en utstilling.
 
-   Kopper er 3,88:1 mot porselen — under AA for liten tekst. Derfor
-   bærer den bare marker, linjer og store tall; all tekst bruker
-   --ink eller --ink-sub.
+   Kjølig skifer med én rustaksent. Krem, messing og espresso er bevisst
+   unngått: det er standardpaletten enhver generator når etter på en
+   kaffebrief, og siden ble bygget nettopp for å slippe standarder.
+   Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
+
+   Rust er 5,16:1 mot skifer og 5,13:1 mot mørk flate, så aksenten
+   holder AA som tekst i begge moduser.
    ===================================================================== */
 :root{
-  --ground:#f7f5f2;
-  --raised:#fffdfa;
-  --ink:#1c1b19;
-  --ink-sub:#6b6560;
-  --rule:#e2dcd4;
-  --rule-sterk:#cfc7bd;
-  --kopper:#b06a3e;
-  --kopper-flate:rgba(176,106,62,.10);
-  --kopper-vask:rgba(176,106,62,.06);
-  --skygge:rgba(60,44,32,.07);
-  --korn:.035;
+  --ground:#eceef0;
+  --raised:#f6f7f8;
+  --ink:#1a1f24;
+  --ink-sub:#5c666f;
+  --rule:#d6dadd;
+  --rule-sterk:#bfc5ca;
+  --rust:#a8432a;
+  --rust-flate:rgba(168,67,42,.10);
+  --rust-vask:rgba(168,67,42,.06);
+  --skygge:rgba(26,31,36,.08);
+  --korn:.03;
 
   --maaleflate:68ch;
   --maxw:760px;
@@ -28,17 +29,17 @@
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --ground:#17120f;
-    --raised:#1e1815;
-    --ink:#efe9e2;
-    --ink-sub:#a79e95;
-    --rule:#2e2621;
-    --rule-sterk:#3d342d;
-    --kopper:#c47e52;
-    --kopper-flate:rgba(196,126,82,.14);
-    --kopper-vask:rgba(196,126,82,.07);
-    --skygge:rgba(0,0,0,.4);
-    --korn:.05;
+    --ground:#11161b;
+    --raised:#171d23;
+    --ink:#e6eaed;
+    --ink-sub:#97a2ab;
+    --rule:#242c33;
+    --rule-sterk:#333d45;
+    --rust:#d4694a;
+    --rust-flate:rgba(212,105,74,.14);
+    --rust-vask:rgba(212,105,74,.08);
+    --skygge:rgba(0,0,0,.45);
+    --korn:.045;
   }
 }
 
@@ -46,7 +47,7 @@
 html{background:var(--ground);scroll-behavior:smooth;}
 body{
   margin:0;background:var(--ground);color:var(--ink);
-  font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
   font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
@@ -60,7 +61,7 @@ body::after{
 
 a{color:inherit;text-decoration:none;}
 button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
-:focus-visible{outline:2px solid var(--kopper);outline-offset:3px;border-radius:2px;}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:2px;}
 
 .hopp{
   position:absolute;left:-9999px;top:0;z-index:calc(var(--z-korn) + 1);
@@ -84,10 +85,10 @@ button{font:inherit;cursor:pointer;background:none;border:0;color:inherit;}
 }
 .merke{
   display:inline-flex;align-items:center;min-height:44px;
-  font-family:Fraunces,Georgia,serif;font-size:19px;font-weight:600;
-  font-variation-settings:"SOFT" 25,"WONK" 1,"opsz" 24;letter-spacing:-.015em;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
+  font-size:18px;font-weight:700;font-stretch:118%;letter-spacing:-.01em;
 }
-.merke[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--kopper);}
+.merke[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--rust);}
 footer{
   display:flex;justify-content:space-between;
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
@@ -99,10 +100,12 @@ footer{
 /* ---------- hero ---------- */
 .hero{padding:14px 0 34px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
 .hero .stempel{margin-bottom:16px;}
+/* Breddeaksen i stedet for et display-serif-snitt: utstyrsmerking er
+   bred og tett, ikke redaksjonell. */
 h1{
-  font-family:Fraunces,Georgia,serif;font-weight:600;
-  font-size:clamp(40px,8vw,64px);line-height:1.02;letter-spacing:-.03em;
-  font-variation-settings:"SOFT" 18,"WONK" 1,"opsz" 96;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;font-weight:700;
+  font-stretch:118%;
+  font-size:clamp(36px,7.2vw,58px);line-height:1.04;letter-spacing:-.025em;
   margin:0 0 16px;text-wrap:balance;
 }
 .lead{
@@ -121,10 +124,10 @@ h1{
 .utstyr[open] summary .stempel::after{content:" \2013";}
 .utstyr-liste{font-size:14px;color:var(--ink-sub);}
 .utstyr summary:hover .utstyr-liste{color:var(--ink);}
-.utstyr dl{margin:0 0 10px;}
+.utstyr dl{margin:0;padding-top:4px;}
 .utstyr-rad{
-  display:grid;grid-template-columns:96px 1fr;gap:16px;
-  padding:13px 0;border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:96px 1fr;gap:4px 16px;
+  padding:0 0 15px;
 }
 .utstyr-rad dt{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
@@ -147,8 +150,8 @@ h1{
   transition:color .2s,box-shadow .2s;
 }
 .bryter:hover{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--rule-sterk);}
-.bryter.on{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--kopper);}
-.bryter:active{background:var(--kopper-vask);}
+.bryter.on{color:var(--ink);box-shadow:inset 0 -1.5px 0 var(--rust);}
+.bryter:active{background:var(--rust-vask);}
 
 /* ---------- journalrader ---------- */
 .gruppe{margin-bottom:40px;}
@@ -167,13 +170,13 @@ h1{
   box-shadow:inset 2px 0 0 transparent;
   transition:background-color .2s,box-shadow .2s;
 }
-.rad:hover{background:var(--kopper-vask);box-shadow:inset 2px 0 0 var(--kopper);}
+.rad:hover{background:var(--rust-vask);box-shadow:inset 2px 0 0 var(--rust);}
 .rad:active{transform:translateY(1px);}
 .rad-topp{display:flex;justify-content:space-between;align-items:baseline;gap:14px;}
 .rad h3{
-  font-family:Fraunces,Georgia,serif;font-size:21px;font-weight:600;
-  font-variation-settings:"SOFT" 22,"WONK" 1,"opsz" 28;letter-spacing:-.018em;
-  line-height:1.15;margin:0;text-wrap:balance;
+  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
+  font-size:20px;font-weight:650;font-stretch:108%;letter-spacing:-.015em;
+  line-height:1.2;margin:0;text-wrap:balance;
 }
 .rad-beskr{margin:0;color:var(--ink-sub);font-size:14.5px;line-height:1.55;max-width:var(--maaleflate);text-wrap:pretty;}
 .rad-data{
@@ -211,15 +214,15 @@ h1{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);
 }
-.glyf path{fill:none;stroke:var(--kopper);stroke-width:1.3;stroke-linejoin:round;}
-.glyf line{stroke:var(--kopper);stroke-width:1.8;stroke-linecap:round;}
-.glyf circle{fill:var(--kopper);}
+.glyf path{fill:none;stroke:var(--rust);stroke-width:1.3;stroke-linejoin:round;}
+.glyf line{stroke:var(--rust);stroke-width:1.8;stroke-linecap:round;}
+.glyf circle{fill:var(--rust);}
 .modus-stor{font-size:12px;margin-top:4px;}
 
 /* ---------- hakk-karakter ---------- */
 .hakk{display:inline-flex;gap:3px;align-items:center;}
 .hakk .h{width:9px;height:3px;background:var(--rule-sterk);}
-.hakk .h.on{background:var(--kopper);}
+.hakk .h.on{background:var(--rust);}
 .hakk.sterk .h{height:6px;}
 
 /* ---------- oppskrift ---------- */
@@ -273,26 +276,25 @@ h1{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;
   fill:var(--ink-sub);font-variant-numeric:tabular-nums;
 }
-.profil-flate{fill:var(--kopper-flate);}
-.profil-linje{fill:none;stroke:var(--kopper);stroke-width:2;stroke-linejoin:round;}
-.profil-punkt{fill:var(--kopper);stroke:var(--ground);stroke-width:2;}
+.profil-flate{fill:var(--rust-flate);}
+.profil-linje{fill:none;stroke:var(--rust);stroke-width:2;stroke-linejoin:round;}
+.profil-punkt{fill:var(--rust);stroke:var(--ground);stroke-width:2;}
 .profil-slutt{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
   font-weight:500;fill:var(--ink);font-variant-numeric:tabular-nums;
 }
 .profil-kryss line{stroke:var(--rule-sterk);stroke-width:1;}
-.profil-kryss circle{fill:var(--kopper);stroke:var(--ground);stroke-width:2.5;}
+.profil-kryss circle{fill:var(--rust);stroke:var(--ground);stroke-width:2.5;}
 .profil-avlesning{
-  display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:baseline;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;
   border-top:1px solid var(--rule);padding-top:11px;margin-top:4px;
   min-height:46px;
 }
-.profil-les{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;}
-.profil-les strong{
+.profil-avlesning strong{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
   font-weight:600;font-variant-numeric:tabular-nums;
 }
-/* --ink, ikke --kopper: aksenten er 3,88:1 mot porselen og holder ikke
+/* --ink, ikke --rust: aksenten er 3,88:1 mot porselen og holder ikke
    AA på liten tekst. Identiteten bæres av merket i kurven. */
 .profil-les-vekt{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;
@@ -305,8 +307,7 @@ h1{
 .karakter .stempel{margin-bottom:12px;}
 .karakter-rader{display:grid;grid-template-columns:repeat(2,1fr);gap:9px 28px;}
 .karakter-rader div{
-  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;
-  border-bottom:1px solid var(--rule);padding-bottom:7px;
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:12px;
 }
 .karakter-navn{font-size:13.5px;}
 .karakter-tall{
@@ -322,8 +323,8 @@ h1{
   background:var(--ground);border-bottom:1px solid var(--rule);
 }
 /* Tabulære siffer fordi tallet tikker — proporsjonale ville flyttet
-   layouten hvert sekund. Sans, ikke Fraunces: et display-snitt på et
-   måletall leser som dekor. */
+   layouten hvert sekund. Samme familie som resten: et eget display-snitt
+   på et måletall leser som dekor. */
 .tt-tid{
   font-size:46px;font-weight:500;line-height:1;letter-spacing:-.025em;
   font-variant-numeric:tabular-nums;
@@ -339,16 +340,16 @@ h1{
   border:1px solid var(--ink);flex-shrink:0;
   transition:background-color .2s,color .2s,border-color .2s,transform .1s;
 }
-.knapp:hover{background:var(--kopper);border-color:var(--kopper);color:var(--raised);}
+.knapp:hover{background:var(--rust);border-color:var(--rust);color:var(--raised);}
 .knapp:active{transform:translateY(1px);}
 .knapp.sekundaer{background:transparent;color:var(--ink);border-color:var(--rule-sterk);}
-.knapp.sekundaer:hover{border-color:var(--kopper);color:var(--kopper);background:transparent;}
+.knapp.sekundaer:hover{border-color:var(--rust);color:var(--rust);background:transparent;}
 
 .steg{list-style:none;margin:0;padding:0;}
 .steg li{
   display:grid;grid-template-columns:76px 1fr;gap:16px;
-  padding:15px 0 15px 12px;margin-left:-12px;
-  border-bottom:1px solid var(--rule);font-size:15.5px;
+  padding:11px 0 11px 12px;margin-left:-12px;
+  font-size:15.5px;
   box-shadow:inset 2px 0 0 transparent;
   transition:background-color .25s,opacity .25s,box-shadow .25s;
 }
@@ -357,7 +358,7 @@ h1{
   color:var(--ink-sub);font-variant-numeric:tabular-nums;padding-top:3px;
 }
 .steg-tekst{text-wrap:pretty;}
-.steg li.aktiv{background:var(--kopper-vask);box-shadow:inset 2px 0 0 var(--kopper);}
+.steg li.aktiv{background:var(--rust-vask);box-shadow:inset 2px 0 0 var(--rust);}
 .steg li.aktiv .steg-tid{color:var(--ink);}
 .steg li.ferdig{opacity:.42;}
 
@@ -372,7 +373,7 @@ h1{
   display:inline-block;padding:13px 6px;margin:-13px -6px;
   box-shadow:inset 0 -1px 0 var(--rule-sterk);transition:box-shadow .2s;
 }
-.kilde a:hover{box-shadow:inset 0 -1px 0 var(--kopper);}
+.kilde a:hover{box-shadow:inset 0 -1px 0 var(--rust);}
 .kilde a::after{content:" \2197";}
 
 .tom{
@@ -382,9 +383,9 @@ h1{
 .tom p{margin:0;max-width:var(--maaleflate);}
 .tom code{
   font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;
-  background:var(--kopper-vask);padding:1px 5px;
+  background:var(--rust-vask);padding:1px 5px;
 }
-.tom .bryter{border-bottom-color:var(--kopper);color:var(--ink);}
+.tom .bryter{border-bottom-color:var(--rust);color:var(--ink);}
 
 /* ---------- smått ---------- */
 @media (max-width:620px){

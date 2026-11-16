@@ -88,8 +88,7 @@ export default function Profil({ o }) {
   return (
     <figure className="profil" ref={boks}>
       <figcaption>
-        <span className="stempel">Hellekurve</span>
-        <span className="profil-akse">totalvekt mot tid</span>
+        <span className="profil-akse">Totalvekt mot tid</span>
       </figcaption>
 
       {bredde > 0 && (
@@ -135,12 +134,9 @@ export default function Profil({ o }) {
           kolliderer ikke med endepunkt-etiketten, hopper ikke i layouten,
           og virker på touch der det ikke finnes hover. */}
       <div className="profil-avlesning" role="status">
-        <span className="stempel">Avlesning</span>
-        <span className="profil-les">
-          <strong>{les.ca ? "ca. " : ""}{les.tid}</strong>
-          <span className="profil-les-vekt">{tall(les.vekt)} g</span>
-          <span className="profil-les-tekst">{les.tekst.replace(/\*\*/g, "")}</span>
-        </span>
+        <strong>{les.ca ? "ca. " : ""}{les.tid}</strong>
+        <span className="profil-les-vekt">{tall(les.vekt)} g</span>
+        <span className="profil-les-tekst">{les.tekst.replace(/\*\*/g, "")}</span>
       </div>
       {bredde === 0 && <div className="profil-plott" style={{ height: `${hoyde}px` }} />}
     </figure>

@@ -106,7 +106,6 @@ export default function Oppskrift({ o }) {
       <Profil o={o} />
 
       <div className="karakter">
-        <span className="stempel">Karakter</span>
         <div className="karakter-rader">
           {KARAKTER.map(([k, navn]) => (
             <div key={k}>
