@@ -5,6 +5,7 @@
    unngått: det er standardpaletten enhver generator når etter på en
    kaffebrief, og siden ble bygget nettopp for å slippe standarder.
    Archivo (bredde-akse for display) + IBM Plex Mono for alle tall.
+   Bodoni Moda brukes kun i ordmerket.
 
    Rust er 5,16:1 mot skifer og 5,13:1 mot mørk flate, så aksenten
    holder AA som tekst i begge moduser.
@@ -87,8 +88,10 @@ main,footer{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
 }
 .merke{
   display:inline-flex;align-items:center;min-height:44px;
-  font-family:Archivo,ui-sans-serif,system-ui,sans-serif;
-  font-size:18px;font-weight:700;font-stretch:118%;letter-spacing:-.01em;
+  /* Eneste stedet serifen brukes: ordmerket. Resten av siden holder
+     seg til Archivo, så serifen er et merke og ikke et tema. */
+  font-family:"Bodoni Moda",Didot,Georgia,serif;
+  font-size:20px;font-weight:600;letter-spacing:.01em;
 }
 .merke[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--rust);}
 footer{
