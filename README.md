@@ -5,8 +5,28 @@ Pour-over-oppskrifter for Hario Switch, publisert på
 
 Hver oppskrift er én YAML-fil i [`oppskrifter/`](oppskrifter). Oppskriftene er
 innholdet, ikke koden: de leses inn ved bygging, så en ny oppskrift krever ingen
-endringer i `src/`. Push til `main` validerer alle filene og publiserer siden på
-nytt. Feiler valideringen, stopper publiseringen og forrige versjon står.
+endringer i `src/`.
+
+## Publisering
+
+```bash
+npm run publiser
+```
+
+Bygger lokalt og dytter resultatet til `gh-pages`, som GitHub Pages serverer.
+Valideringen kjører først, så en ødelagt oppskrift stopper publiseringen og
+forrige versjon blir stående.
+
+Dette er en midlertidig vei utenom GitHub Actions. Workflowen i
+[`deploy.yml`](.github/workflows/deploy.yml) gjør det samme ved push til `main`,
+men kjøringene avvises for tiden med «account is locked due to a billing issue»,
+uten at det finnes noe utestående på kontoen. Når de går gjennom igjen:
+
+```bash
+gh api -X PUT repos/benjaminpapp/kaffeoppskrifter/pages \
+  --input - <<< '{"build_type":"workflow"}'
+git push origin --delete gh-pages
+```
 
 Filnavnet er adressen: `oppskrifter/double.yml` → `#/o/double`. Filer som starter
 med `_` er ikke oppskrifter — [`_utstyr.yml`](oppskrifter/_utstyr.yml) er utstyret
@@ -41,6 +61,7 @@ npm install
 npm run dev       # http://localhost:5173/kaffeoppskrifter/
 npm run valider   # validerer oppskriftene
 npm run build     # validerer, så bygger til dist/
+npm run publiser  # bygger og publiserer til gh-pages
 ```
 
 ## Oppbygging
@@ -53,5 +74,7 @@ slipper 404-omskriving.
 | [`src/data.js`](src/data.js) | leser `oppskrifter/*.yml` med `import.meta.glob`, sorterer, regner ratio |
 | [`src/App.jsx`](src/App.jsx) | ruting, oversikt, filtre på nivå og modus |
 | [`src/Oppskrift.jsx`](src/Oppskrift.jsx) | oppskriftsvisning med tidtaker og wake lock |
+| [`src/Profil.jsx`](src/Profil.jsx) | hellekurve: leser vannmassen ut av stegtekstene |
 | [`scripts/valider.mjs`](scripts/valider.mjs) | feltvalidering, kjører før hvert bygg |
-| [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) | bygger og publiserer til Pages ved push til `main` |
+| [`scripts/publiser.mjs`](scripts/publiser.mjs) | dytter `dist/` til `gh-pages` og ber om Pages-bygg |
+| [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) | samme publisering via Actions, ute av drift (se over) |
