@@ -190,3 +190,55 @@ export function lagOppskrift(maal, kopper = 1) {
     konflikt,
   }
 }
+
+// ---------- eksport til YAML ----------
+//
+// Fritekst siteres alltid. YAML tolker en skalar som begynner med * som et
+// alias, og stegtekstene begynner ofte med **Åpne**. Tidene må også siteres,
+// ellers kan 0:58 leses som sekstitallssyntaks.
+
+// JSON er en delmengde av YAML 1.2, så en JSON-sitert streng er gyldig YAML
+// og slipper unna all escaping for hånd.
+const sitat = (s) => JSON.stringify(String(s))
+
+export const tilSlug = (navn) =>
+  navn
+    .toLowerCase()
+    .replace(/[æå]/g, "a").replace(/ø/g, "o")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 50) || "ny-oppskrift"
+
+export function tilYaml(o, navn, maal) {
+  const onsket = AKSER.map(([k, n]) => `${n.toLowerCase()} ${maal[k]}`).join(", ")
+  const linjer = [
+    `navn: ${sitat(navn)}`,
+    `niva: ${o.niva}`,
+    `modus: ${o.modus}`,
+    `brygger: ${sitat(o.brygger)}`,
+    `beskrivelse: ${sitat(o.beskrivelse)}`,
+    `kaffe: ${o.kaffe}`,
+    `vann: ${o.vann}`,
+    `temp: ${sitat(o.temp)}`,
+    `malegrad: ${o.malegrad}`,
+    `tid: ${sitat(o.tid)}`,
+    "karakter:",
+    ...["syre", "sodme", "fylde", "klarhet"].map((k) => `  ${k}: ${o.karakter[k]}`),
+    "steg:",
+  ]
+
+  for (const s of o.steg) {
+    linjer.push(`  - tid: ${sitat(s.tid)}`)
+    if (s.ca) linjer.push("    ca: true")
+    linjer.push(`    tekst: ${sitat(s.tekst)}`)
+  }
+
+  linjer.push(
+    "notater: >-",
+    `  Satt sammen av generatoren ut fra ønsket karakter: ${onsket}.`,
+    "  Malegraden er et utgangspunkt og må dial-es inn mot bønnen. Karakteren",
+    "  er det du ba om, ikke noe som er smakt — rett den etter første brygg."
+  )
+
+  return linjer.join("\n") + "\n"
+}

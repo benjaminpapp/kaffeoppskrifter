@@ -595,3 +595,31 @@ h1{
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important;scroll-behavior:auto!important;}
 }
+
+/* ---------- behold forslaget ---------- */
+.behold{margin-top:36px;}
+.behold .stempel{margin-bottom:8px;}
+.behold-hjelp{
+  margin:0 0 16px;font-size:14px;color:var(--ink-sub);
+  max-width:var(--maaleflate);text-wrap:pretty;
+}
+.behold-hjelp code,.behold-fil{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.92em;
+  background:var(--rust-vask);padding:2px 6px;
+}
+.behold-rad{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;margin-bottom:14px;}
+.behold-navn{display:flex;flex-direction:column;gap:5px;}
+.behold-navn input{
+  font:inherit;font-size:15px;color:var(--ink);
+  background:var(--raised);border:1px solid var(--rule-sterk);
+  padding:0 12px;min-height:44px;min-width:240px;border-radius:2px;
+}
+.behold-navn input:focus-visible{border-color:var(--rust);}
+.behold-fil{color:var(--ink-sub);align-self:center;}
+.behold-knapper{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.behold-tekst{
+  display:block;width:100%;margin-top:14px;padding:14px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;line-height:1.55;
+  color:var(--ink);background:var(--raised);
+  border:1px solid var(--rule-sterk);border-radius:2px;resize:vertical;
+}
