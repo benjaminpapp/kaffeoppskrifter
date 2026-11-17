@@ -1,0 +1,38 @@
+navn: Nas Jaafar (WBrC 2026)
+niva: middels
+modus: hybrid
+brygger: "Hario Switch (hybrid: åpen → lukket → åpen)"
+beskrivelse: Vinneroppskriften fra World Brewers Cup 2026. Perkolering først med åpen Switch, så immersion på andre halvdel, og en kort avrenning til slutt.
+kaffe: 15
+vann: 200
+temp: 92 °C
+malegrad: 6.5
+tid: "2:10"
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 3
+  klarhet: 5
+steg:
+  - tid: "0:00"
+    tekst: Switch **åpen**. Hell **100 g** i sirkler
+  - tid: "0:58"
+    tekst: "**Lukk** Switch"
+  - tid: "1:00"
+    tekst: Hell opp til **200 g**
+  - tid: "2:00"
+    tekst: "**Åpne** Switch"
+  - tid: "2:10"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Nas Jaafar brukte en UFO V3-trakt på Switch-base, ikke en V60. Trakten har
+  80 graders vinkel og gir en grunn og bred seng, så flyten er raskere enn i
+  en V60 — en Hario NEO på Switch-base ligger nærmere. Ethan Park kom på
+  femteplass med nettopp den kombinasjonen. Originalen oppgir malegrad som
+  rundt 700 mikron, ikke et ZP6-tall; 6,5 her er omregnet og bør finjusteres.
+  Vann på 50 ppm, og kaffen var en anaerob naturell Geisha fra Finca Nuguo i
+  Panama. Karakteren er anslått ut fra metoden, ikke smakt.
+kilde:
+  navn: Yoshiharu Sakamoto (WBrC 2026-finalistene)
+  url: https://note.com/baristatrainer/n/naf6cb3255b9c
