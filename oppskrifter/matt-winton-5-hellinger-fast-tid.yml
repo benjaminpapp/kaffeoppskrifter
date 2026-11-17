@@ -1,0 +1,40 @@
+navn: Matt Winton 5 hellinger (fast tid)
+niva: middels
+modus: åpen
+brygger: Hario Switch (åpen, som V60)
+beskrivelse: En klokkestyrt variant av vinneroppskriften fra World Brewers Cup 2021. Fem like hellinger hvert 30. sekund, grov malegrad og lavere temperatur på de to siste.
+kaffe: 20
+vann: 300
+temp: 93 °C, så 88 °C
+malegrad: 6.5
+tid: ca. 2:40
+karakter:
+  syre: 3
+  sodme: 4
+  fylde: 2
+  klarhet: 4
+# Karakteren er ikke smakt. Rett den etter forste brygg og fjern dette feltet.
+karakter_anslatt: true
+steg:
+  - tid: "0:00"
+    tekst: "Bloom: hell opp til **50 g** med 93 °C"
+  - tid: "0:35"
+    tekst: Hell opp til **120 g** med 93 °C
+  - tid: "1:05"
+    tekst: Hell opp til **180 g** med 93 °C
+  - tid: "1:35"
+    tekst: Hell opp til **240 g** med 88 °C
+  - tid: "2:05"
+    tekst: Hell opp til **300 g** med 88 °C
+  - tid: "2:40"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Denne versjonen går på faste tider, i motsetning til oppskriften «Matt Winton 5
+  hellinger», der man venter til sengen er tørr før hver helling. Den er derfor
+  mye kortere. Temperaturen byttes først på fjerde helling, ikke etter bloomen.
+  Kilden oppgir bare «grov» malegrad og en metall-V60, så 6.5 på ZP6 er et
+  utgangspunkt. Karakteren er anslått, ikke smakt.
+kilde:
+  navn: lifeofretsu på Threads
+  url: https://www.threads.net/@lifeofretsu
