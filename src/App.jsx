@@ -3,6 +3,8 @@ import { oppskrifter, NIVAER, MODUSER, ratio, tall } from "./data"
 import Oppskrift from "./Oppskrift"
 import { Prikker, ModusGlyf, KARAKTER } from "./ui"
 import PatternWaves from "./PatternWaves"
+import Laer from "./Laer"
+import Lag from "./Lag"
 
 // Enkel hash-ruting (#/o/<slug>) — fungerer på GitHub Pages uten 404-triks.
 function useHash() {
@@ -152,6 +154,17 @@ function Oversikt() {
         <h1 className="skjult">Kaffeoppskrifter for Hario Switch</h1>
       </header>
 
+      <nav className="snarveier" aria-label="Verktøy">
+        <a className="snarvei" href="#/lag">
+          <strong>Lag en oppskrift</strong>
+          <span>Velg karakter, få et forslag med begrunnelse</span>
+        </a>
+        <a className="snarvei" href="#/laer">
+          <strong>Lær</strong>
+          <span>Forskningen bak, og prosessering av bønnene</span>
+        </a>
+      </nav>
+
       <div className="filtre">
         <Filter valg={NIVAER} aktiv={niva} sett={setNiva} tekst={NIVA_TEKST} etikett="Nivå" />
         <Filter valg={MODUSER} aktiv={modus} sett={setModus} tekst={MODUS_TEKST} etikett="Modus" />
@@ -210,29 +223,42 @@ function FinnesIkke({ slug }) {
   )
 }
 
+// Rutene er flate: oversikt, én oppskrift, generatoren, eller lærestoffet.
+// Lærestoffet kan dyplenkes til et enkelt kort med #/laer/<kort-id>.
+function lesRute(hash) {
+  if (hash.startsWith("#/o/")) return { type: "oppskrift", slug: decodeURIComponent(hash.slice(4)) }
+  if (hash.startsWith("#/lag")) return { type: "lag" }
+  if (hash.startsWith("#/laer")) return { type: "laer", kort: hash.slice(6).replace(/^\//, "") || null }
+  return { type: "oversikt" }
+}
+
+const TITTEL = { lag: "Lag en oppskrift — brygg.", laer: "Lær — brygg.", oversikt: "brygg." }
+
 export default function App() {
   const hash = useHash()
-  const slug = hash.startsWith("#/o/") ? decodeURIComponent(hash.slice(4)) : null
-  const valgt = slug ? oppskrifter.find((o) => o.slug === slug) : null
+  const rute = lesRute(hash)
+  const valgt = rute.type === "oppskrift" ? oppskrifter.find((o) => o.slug === rute.slug) : null
 
   useEffect(() => {
-    document.title = valgt ? `${valgt.navn} — Bryggejournal` : "Bryggejournal — Hario Switch"
+    document.title = valgt ? `${valgt.navn} — brygg.` : TITTEL[rute.type] ?? "brygg."
     window.scrollTo(0, 0)
-  }, [valgt, slug])
+  }, [valgt, hash])
 
   return (
     <>
       <Bakgrunn />
       <a className="hopp" href="#main">Hopp til innholdet</a>
       <nav className="nav">
-        <a className="merke" href="#/" aria-current={slug ? undefined : "page"}>
+        <a className="merke" href="#/" aria-current={rute.type === "oversikt" ? "page" : undefined}>
           brygg<span className="merke-punktum">.</span>
         </a>
       </nav>
       <main id="main">
-        {slug && !valgt && <FinnesIkke slug={slug} />}
-        {valgt && <Oppskrift o={valgt} />}
-        {!slug && <Oversikt />}
+        {rute.type === "oppskrift" && valgt && <Oppskrift o={valgt} />}
+        {rute.type === "oppskrift" && !valgt && <FinnesIkke slug={rute.slug} />}
+        {rute.type === "lag" && <Lag />}
+        {rute.type === "laer" && <Laer fokus={rute.kort} />}
+        {rute.type === "oversikt" && <Oversikt />}
       </main>
     </>
   )

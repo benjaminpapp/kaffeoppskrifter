@@ -92,7 +92,7 @@ function Porsjoner({ basis, kopper, sett }) {
   )
 }
 
-export default function Oppskrift({ o }) {
+export default function Oppskrift({ o, visTilbake = true }) {
   const basis = basiskopper(o)
   const [kopper, setKopper] = useState(basis)
   useEffect(() => setKopper(basiskopper(o)), [o])
@@ -112,7 +112,7 @@ export default function Oppskrift({ o }) {
   ]
   return (
     <article className="oppskrift">
-      <a className="tilbake" href="#/">Alle oppskriftene</a>
+      {visTilbake && <a className="tilbake" href="#/">Alle oppskriftene</a>}
 
       <header className="opp-topp">
         <p className="stempel">{o.niva} · {o.brygger}</p>
