@@ -1,0 +1,40 @@
+navn: Ethan Park (WBrC 2026)
+niva: avansert
+modus: hybrid
+brygger: "Hario Switch med NEO-trakt (hybrid: åpen → lukket → åpen)"
+beskrivelse: Femteplassen fra World Brewers Cup 2026. To varme hellinger med åpen Switch, så immersion i 70 °C vann og en kort avrenning til slutt.
+kaffe: 14
+vann: 200
+temp: 95–96 °C, så 70 °C
+malegrad: 6.0
+tid: "2:00"
+karakter:
+  syre: 3
+  sodme: 5
+  fylde: 3
+  klarhet: 4
+# Karakteren er ikke smakt. Rett den etter forste brygg og fjern dette feltet.
+karakter_anslatt: true
+steg:
+  - tid: "0:00"
+    tekst: "Switch **åpen**. Bloom: hell opp til **50 g** med 95 °C"
+  - tid: "0:30"
+    tekst: Hell opp til **120 g** med 96 °C
+  - tid: "1:10"
+    tekst: "**Lukk** Switch, hell opp til **200 g** med 70 °C"
+  - tid: "1:50"
+    tekst: "**Åpne** Switch og la det renne"
+  - tid: "2:00"
+    ca: true
+    tekst: Ferdig når alt vannet har rent gjennom
+notater: >-
+  Ethan Junseong Park representerte Sør-Korea og kom på femteplass med en Hario
+  NEO-trakt på Switch-base. Kilden sier bare at Switchen åpnes på 1:50, ikke når
+  den lukkes. At den står åpen gjennom de to varme hellingene og lukkes ved
+  70 °C-hellingen er et anslag ut fra samme oppbygning som Devil's Recipe.
+  Kjøl vannet mens de varme hellingene renner. Malegraden er ikke oppgitt;
+  6,0 på ZP6 er et utgangspunkt, siden NEO renner raskere enn en V60.
+  Karakteren er anslått, ikke smakt.
+kilde:
+  navn: lifeofretsu på Threads
+  url: https://www.threads.net/@lifeofretsu
