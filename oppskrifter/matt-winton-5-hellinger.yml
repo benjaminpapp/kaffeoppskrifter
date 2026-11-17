@@ -13,6 +13,8 @@ karakter:
   sodme: 4
   fylde: 2
   klarhet: 5
+# Karakteren er ikke smakt. Rett den etter forste brygg og fjern dette feltet.
+karakter_anslatt: true
 steg:
   - tid: "0:00"
     tekst: "Bloom: hell opp til **60 g** med 93 °C"

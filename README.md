@@ -59,6 +59,7 @@ men ligger igjen fordi notatene der fortsatt er verdt å ha.
 | `steg[].tid` | `"M:SS"` | tidspunkt fra første helling, må være i hermetegn |
 | `steg[].tekst` | tekst | `**fet**` rendres |
 | `steg[].ca` | bool | valgfri, viser «ca.» foran tiden |
+| `karakter_anslatt` | bool | valgfri, markerer at karakteren ikke er smakt |
 | `notater` | tekst | valgfri |
 | `kilde` | `navn` + `url` | valgfri, begge kreves hvis satt |
 

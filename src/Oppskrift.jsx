@@ -151,6 +151,11 @@ export default function Oppskrift({ o, visTilbake = true }) {
       <Profil o={vist} />
 
       <div className="karakter">
+        {o.karakter_anslatt && (
+          <p className="anslag-merke">
+            Karakteren her er anslått ut fra metoden, ikke smakt. Rett den etter første brygg.
+          </p>
+        )}
         <div className="karakter-rader">
           {KARAKTER.map(([k, navn]) => (
             <div key={k}>

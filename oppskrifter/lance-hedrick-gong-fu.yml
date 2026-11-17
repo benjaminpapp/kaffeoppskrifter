@@ -13,6 +13,8 @@ karakter:
   sodme: 5
   fylde: 4
   klarhet: 3
+# Karakteren er ikke smakt. Rett den etter forste brygg og fjern dette feltet.
+karakter_anslatt: true
 steg:
   - tid: "0:00"
     tekst: Switch **lukket**. Hell **50 g** vann på 75 °C i den tomme bryggeren

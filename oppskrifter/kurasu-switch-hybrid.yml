@@ -13,6 +13,8 @@ karakter:
   sodme: 4
   fylde: 3
   klarhet: 4
+# Karakteren er ikke smakt. Rett den etter forste brygg og fjern dette feltet.
+karakter_anslatt: true
 steg:
   - tid: "0:00"
     tekst: Switch **lukket**, hell opp til **50 g** og virvle forsiktig fem ganger

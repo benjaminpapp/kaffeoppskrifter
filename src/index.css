@@ -623,3 +623,11 @@ h1{
   color:var(--ink);background:var(--raised);
   border:1px solid var(--rule-sterk);border-radius:2px;resize:vertical;
 }
+
+/* Karakteren på noen oppskrifter er anslått fra metoden og ikke smakt.
+   Det skal stå på selve oppskriften, ikke bare i notatet. */
+.anslag-merke{
+  margin:0 0 14px;padding:9px 12px;font-size:13.5px;color:var(--ink-sub);
+  background:var(--rust-vask);box-shadow:inset 2px 0 0 var(--rust);
+  max-width:var(--maaleflate);text-wrap:pretty;
+}

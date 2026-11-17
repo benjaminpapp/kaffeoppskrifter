@@ -180,7 +180,9 @@ export const BRYGGING = [
       høyest sødme på 4,2. Antall hellinger korrelerer −0,74 med fylde og +0,56 med
       klarhet. Ratio korrelerer −0,53 med fylde.`,
     praksis: `Generatoren velger modus ved å måle avstanden fra ønsket profil til
-      disse tre snittene.`,
+      disse tre snittene. Fem av karakterene er anslag og ikke smakt. Tar man dem ut,
+      flytter profilene seg høyst 0,5 — men lukket står da igjen med bare to
+      oppskrifter, så den profilen er den svakeste av de tre.`,
     kilde: {
       navn: "Denne samlingen",
       hvor: "14 oppskrifter, hvorav 5 karakterer er anslag og ikke smakt",
