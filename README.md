@@ -87,8 +87,8 @@ slipper 404-omskriving.
 | [`src/data.js`](src/data.js) | leser `oppskrifter/*.yml` med `import.meta.glob`, sorterer, regner ratio |
 | [`src/App.jsx`](src/App.jsx) | ruting, oversikt, filtre på nivå og modus |
 | [`src/Oppskrift.jsx`](src/Oppskrift.jsx) | oppskriftsvisning med tidtaker og wake lock |
-| [`src/faser.js`](src/faser.js) | fasemodellen: deler hellingene i bloom, midt og siste og leser smaken ut av fordelingen |
-| [`src/Faser.jsx`](src/Faser.jsx) | fasesiden (`#/faser`) og fasevurderingen på hver oppskrift |
+| [`src/faser.js`](src/faser.js) | fasemodellen, bloomvekt og dose: leser forventet smak ut av hellingene og dosen |
+| [`src/Faser.jsx`](src/Faser.jsx) | kjeglesiden (`#/faser`, `#/faser/bloom`, `/dose`, `/surt`) og vurderingen på hver oppskrift |
 | [`src/Profil.jsx`](src/Profil.jsx) | hellekurve: leser vannmassen ut av stegtekstene |
 | [`scripts/valider.mjs`](scripts/valider.mjs) | feltvalidering, kjører før hvert bygg |
 | [`scripts/publiser.mjs`](scripts/publiser.mjs) | dytter `dist/` til `gh-pages` og ber om Pages-bygg |

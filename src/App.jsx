@@ -165,8 +165,8 @@ function Oversikt() {
           <span>Forskningen bak, og prosessering av bønnene</span>
         </a>
         <a className="snarvei" href="#/faser">
-          <strong>Faser</strong>
-          <span>Hvordan bloom, midt og siste helling former smaken</span>
+          <strong>Kjegla</strong>
+          <span>Faser, bloomvekt, dose, og hva du gjør når koppen blir for sur</span>
         </a>
       </nav>
 
@@ -233,12 +233,12 @@ function FinnesIkke({ slug }) {
 function lesRute(hash) {
   if (hash.startsWith("#/o/")) return { type: "oppskrift", slug: decodeURIComponent(hash.slice(4)) }
   if (hash.startsWith("#/lag")) return { type: "lag" }
-  if (hash.startsWith("#/faser")) return { type: "faser" }
+  if (hash.startsWith("#/faser")) return { type: "faser", fane: hash.slice(7).replace(/^\//, "") || null }
   if (hash.startsWith("#/laer")) return { type: "laer", kort: hash.slice(6).replace(/^\//, "") || null }
   return { type: "oversikt" }
 }
 
-const TITTEL = { faser: "Faser — brygg.", lag: "Lag en oppskrift — brygg.", laer: "Lær — brygg.", oversikt: "brygg." }
+const TITTEL = { faser: "Kjegla — brygg.", lag: "Lag en oppskrift — brygg.", laer: "Lær — brygg.", oversikt: "brygg." }
 
 export default function App() {
   const hash = useHash()
@@ -264,7 +264,7 @@ export default function App() {
         {rute.type === "oppskrift" && !valgt && <FinnesIkke slug={rute.slug} />}
         {rute.type === "lag" && <Lag />}
         {rute.type === "laer" && <Laer fokus={rute.kort} />}
-        {rute.type === "faser" && <Faser />}
+        {rute.type === "faser" && <Faser fane={rute.fane} />}
         {rute.type === "oversikt" && <Oversikt />}
       </main>
     </>

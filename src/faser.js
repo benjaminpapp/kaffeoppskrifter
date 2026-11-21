@@ -131,3 +131,78 @@ export function faser(o) {
     lukket: lukketFaser,
   }
 }
+
+// ---------- bloomvekt ----------
+// Bloomen målt i ganger kaffedosen: 2x, 3x eller 4x. Rundes til nærmeste
+// hele, så 2,5x (Winton, fast tid) havner på 3x og 3,6x (Emi, Ethan) på 4x.
+
+export const BLOOM = {
+  2: {
+    navn: "2x",
+    lukt: "Søtere og mindre syrlig",
+    punkter: ["Rundere kropp", "Subtil syre", "Smaken er ikke klar", "Mer balansert og søt", "Ettersmak som dveler"],
+    kort: "Rund og søt, med subtil syre og en ettersmak som dveler, men smaken blir mindre tydelig.",
+    bruk: "Når du vil ha en kopp å nyte",
+  },
+  3: {
+    navn: "3x",
+    lukt: "Søt, men syren lukter mer enn ved 2x",
+    punkter: ["Klarere syre", "Frukt og blomster kommer godt fram", "Veldig tydelig smak", "Lysere enn 2x", "Mer komplekse lag", "Mer aromatisk", "God tekstur"],
+    kort: "Klarere syre, mer aroma og tydelig frukt og blomst, med god tekstur.",
+    bruk: "Når du vil utforske hva kaffen kan",
+  },
+  4: {
+    navn: "4x",
+    lukt: "Intens syrlig lukt",
+    punkter: ["Skarp syre", "Frukt og blomster kommer godt fram", "Veldig tydelig smak", "Veldig lys", "Alle detaljer kommer fram", "Veldig komplekse lag", "Veldig intens aroma", "Kortere ettersmak", "Litt bitter"],
+    kort: "Skarp syre og veldig intens aroma, alle detaljer fram, men kortere ettersmak og litt bitter.",
+    bruk: "Når du vil vurdere detaljer: aroma, brenningsgrad og om bryggingen er godt utviklet",
+  },
+}
+
+export function bloomvekt(o, f = faser(o)) {
+  if (!f.deler) return null
+  const ganger = f.deler.bloom / o.kaffe
+  const trinn = Math.round(ganger)
+  if (trinn > 4) {
+    return {
+      ganger, trinn: 5, navn: "Over 4x",
+      kort: `Første helling er så stor at den er mer en egen fase enn en bloom. Modellen
+        sier ikke noe sikkert her, men retningen er mot enda klarere syre og mer aroma.`,
+    }
+  }
+  return { ganger, trinn: Math.max(2, trinn), ...BLOOM[Math.max(2, trinn)] }
+}
+
+// ---------- dose ----------
+// Kilden sammenligner 10, 12,5 og 15 g med samme ratio. Oppskriftene her
+// bruker 14 g eller mer, så de fleste havner i den største klassen.
+
+export const DOSER = {
+  10: {
+    navn: "10 g",
+    bruk: "Vurdering og detaljer",
+    lukt: "Mer syrlig, frukt og blomst kommer godt fram",
+    punkter: ["Klarest syre", "Aromatisk", "Lysest", "Lettest kropp", "Veldig kompleks", "Veldig tydelig smak, alle detaljer kommer fram", "Ren i koppen"],
+    kort: "Klarest syre og lettest kropp. Alle smaksnotene kommer fram.",
+  },
+  12.5: {
+    navn: "12,5 g",
+    bruk: "Utforsking",
+    lukt: "Litt syrligere enn 15 g, men fortsatt søt, frukt og blomst godt fram",
+    punkter: ["Klarere syre enn 15 g", "Rund kropp", "Mer komplekse lag enn 15 g", "Litt mer aromatisk enn 15 g", "Tydeligere smak enn 15 g", "Ryddige lag", "God, sirupsaktig tekstur"],
+    kort: "Rund kropp med klarere syre og tydeligere smak enn en større dose.",
+  },
+  15: {
+    navn: "15 g og mer",
+    bruk: "Hverdagskopp",
+    lukt: "Veldig søt, frukt og blomst er der, men ikke klart",
+    punkter: ["Rund kropp", "Mest balansert og søtest", "Smaken er ikke tydelig", "Komplekse lag", "Mindre aromatisk, mer sirupsaktig", "Lang ettersmak", "Subtil og veldig god å drikke"],
+    kort: "Søt og balansert med rund kropp og lang ettersmak. Syren er subtil og smaken mindre tydelig.",
+  },
+}
+
+export function dose(o) {
+  const klasse = o.kaffe < 11.25 ? 10 : o.kaffe < 13.75 ? 12.5 : 15
+  return { gram: o.kaffe, klasse, ...DOSER[klasse] }
+}

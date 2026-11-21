@@ -170,7 +170,7 @@ export default function Oppskrift({ o, visTilbake = true }) {
 
       <Tidtaker steg={vist.steg} />
 
-      <FaseVurdering o={o} />
+      <FaseVurdering o={vist} />
 
       {o.notater && (
         <section className="notater">
