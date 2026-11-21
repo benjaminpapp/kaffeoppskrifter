@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { ratio, tall, sekunder, mmss, basiskopper, skaler, MAKS_VANN, MAKS_KOPPER } from "./data"
 import { Prikker, ModusGlyf, KARAKTER } from "./ui"
 import Profil from "./Profil"
+import { FaseVurdering } from "./Faser"
 
 // **fet** → <strong>
 function Tekst({ children }) {
@@ -168,6 +169,8 @@ export default function Oppskrift({ o, visTilbake = true }) {
       </div>
 
       <Tidtaker steg={vist.steg} />
+
+      <FaseVurdering o={o} />
 
       {o.notater && (
         <section className="notater">

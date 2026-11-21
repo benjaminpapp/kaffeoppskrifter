@@ -480,7 +480,7 @@ h1{
 .tom .bryter::after{background:var(--rust);}
 
 /* ---------- snarveier ---------- */
-.snarveier{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:30px;}
+.snarveier{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:30px;}
 .snarvei{
   display:flex;flex-direction:column;gap:3px;
   padding:16px 18px;border-radius:3px;
@@ -630,4 +630,101 @@ h1{
   margin:0 0 14px;padding:9px 12px;font-size:13.5px;color:var(--ink-sub);
   background:var(--rust-vask);box-shadow:inset 2px 0 0 var(--rust);
   max-width:var(--maaleflate);text-wrap:pretty;
+}
+
+/* ---------- faser ---------- */
+/* Tre faser i én stolpe. Fasene skilles med tone av samme aksent, ikke med
+   nye farger: bloom er svakest, siste sterkest, i den rekkefølgen vannet
+   helles. Lukkede faser skraveres, samme formspråk som ModusGlyf. */
+.fase-stolpe{display:flex;gap:2px;width:100%;min-width:0;}
+.fase-del{
+  display:flex;flex-direction:column;justify-content:center;gap:1px;
+  min-width:0;flex-basis:0;padding:6px 8px;border-radius:2px;overflow:hidden;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;line-height:1.2;
+  font-variant-numeric:tabular-nums;color:var(--ink);
+}
+.fase-bloom{background:color-mix(in srgb, var(--rust) 16%, var(--raised));}
+.fase-midt{background:color-mix(in srgb, var(--rust) 34%, var(--raised));}
+.fase-siste{background:color-mix(in srgb, var(--rust) 58%, var(--raised));}
+.fase-lukket{
+  background-image:repeating-linear-gradient(135deg, transparent 0 5px, color-mix(in srgb, var(--ink) 16%, transparent) 5px 6px);
+}
+.fase-del-navn{letter-spacing:.08em;text-transform:uppercase;color:var(--ink-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.fase-siste .fase-del-navn{color:var(--ink);}
+.fase-del-gram{font-size:12px;white-space:nowrap;}
+
+.fase-vurdering{margin-top:40px;max-width:var(--maaleflate);}
+.fase-hode{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;}
+.fase-hode .stempel{margin:0;}
+.fase-type{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:20px;font-weight:600;
+}
+.fase-smak{margin:14px 0 0;font-size:15px;line-height:1.6;text-wrap:pretty;}
+.fase-merknad{margin:10px 0 0;font-size:13.5px;line-height:1.55;color:var(--ink-sub);text-wrap:pretty;}
+.fase-juster{
+  margin:14px 0 0;padding-left:12px;box-shadow:inset 2px 0 0 var(--rust);
+  font-size:14.5px;line-height:1.55;text-wrap:pretty;
+}
+.fase-juster .stempel{display:block;margin-bottom:4px;}
+.fase-lenke{
+  display:inline-block;margin-top:14px;font-size:13.5px;color:var(--ink-sub);
+  box-shadow:inset 0 -1px 0 var(--rule-sterk);transition:box-shadow .2s,color .2s;
+}
+.fase-lenke:hover{color:var(--ink);box-shadow:inset 0 -1px 0 var(--rust);}
+
+.fase-forbehold{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin:14px 0 0;
+  font-size:13.5px;color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;
+}
+.fase-seksjon{margin-bottom:38px;}
+.fase-ingress{margin:-4px 0 16px;font-size:14.5px;color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;}
+.fase-alle{margin:0;font-size:15px;line-height:1.6;max-width:var(--maaleflate);text-wrap:pretty;}
+.fase-kolonner{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.fase-kolonne{
+  padding:16px 18px;border-radius:3px;background:var(--raised);
+  box-shadow:inset 0 0 0 1px var(--rule);
+}
+.fase-kolonne h3{
+  margin:0 0 8px;font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:18px;font-weight:600;
+}
+.fase-kolonne ul{margin:0;padding-left:18px;font-size:14px;line-height:1.6;}
+.fase-kolonne li::marker{color:var(--rust);}
+
+.fase-regel{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.04em;color:var(--ink-sub);white-space:nowrap;
+}
+.fase-eksempler{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;}
+.fase-eksempel .kort-hva{margin-bottom:14px;}
+.fase-eksempel-rad{margin-top:12px;}
+.fase-eksempel-topp{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;
+  font-size:13px;color:var(--ink-sub);
+}
+.fase-eksempel-topp strong{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12.5px;color:var(--ink);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.fase-fire{margin-top:6px;}
+
+.fase-gruppe{margin-bottom:26px;}
+.fase-gruppe-hode{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;}
+.fase-gruppe-hode h3{
+  margin:0;font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:20px;font-weight:600;
+}
+.fase-gruppe-smak{margin:6px 0 12px;font-size:14px;line-height:1.55;color:var(--ink-sub);max-width:var(--maaleflate);text-wrap:pretty;}
+.fase-rader{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.fase-rad{
+  display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);align-items:center;gap:14px;
+  padding:8px 12px;border-radius:3px;background:var(--raised);
+  box-shadow:inset 0 0 0 1px var(--rule);transition:box-shadow .2s;
+}
+.fase-rad:hover{box-shadow:inset 0 0 0 1px var(--rust);}
+.fase-rad-navn{font-size:14.5px;font-weight:500;text-wrap:balance;}
+.fase-rad-tom{font-size:13px;color:var(--ink-sub);}
+.fase-kilde{margin-top:30px;}
+
+@media (max-width:760px){
+  .fase-kolonner,.fase-eksempler{grid-template-columns:1fr;}
+  .fase-rad{grid-template-columns:1fr;gap:8px;}
 }

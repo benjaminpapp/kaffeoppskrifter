@@ -5,6 +5,7 @@ import { Prikker, ModusGlyf, KARAKTER } from "./ui"
 import PatternWaves from "./PatternWaves"
 import Laer from "./Laer"
 import Lag from "./Lag"
+import Faser from "./Faser"
 
 // Enkel hash-ruting (#/o/<slug>) — fungerer på GitHub Pages uten 404-triks.
 function useHash() {
@@ -163,6 +164,10 @@ function Oversikt() {
           <strong>Lær</strong>
           <span>Forskningen bak, og prosessering av bønnene</span>
         </a>
+        <a className="snarvei" href="#/faser">
+          <strong>Faser</strong>
+          <span>Hvordan bloom, midt og siste helling former smaken</span>
+        </a>
       </nav>
 
       <div className="filtre">
@@ -223,16 +228,17 @@ function FinnesIkke({ slug }) {
   )
 }
 
-// Rutene er flate: oversikt, én oppskrift, generatoren, eller lærestoffet.
+// Rutene er flate: oversikt, én oppskrift, generatoren, lærestoffet eller fasene.
 // Lærestoffet kan dyplenkes til et enkelt kort med #/laer/<kort-id>.
 function lesRute(hash) {
   if (hash.startsWith("#/o/")) return { type: "oppskrift", slug: decodeURIComponent(hash.slice(4)) }
   if (hash.startsWith("#/lag")) return { type: "lag" }
+  if (hash.startsWith("#/faser")) return { type: "faser" }
   if (hash.startsWith("#/laer")) return { type: "laer", kort: hash.slice(6).replace(/^\//, "") || null }
   return { type: "oversikt" }
 }
 
-const TITTEL = { lag: "Lag en oppskrift — brygg.", laer: "Lær — brygg.", oversikt: "brygg." }
+const TITTEL = { faser: "Faser — brygg.", lag: "Lag en oppskrift — brygg.", laer: "Lær — brygg.", oversikt: "brygg." }
 
 export default function App() {
   const hash = useHash()
@@ -258,6 +264,7 @@ export default function App() {
         {rute.type === "oppskrift" && !valgt && <FinnesIkke slug={rute.slug} />}
         {rute.type === "lag" && <Lag />}
         {rute.type === "laer" && <Laer fokus={rute.kort} />}
+        {rute.type === "faser" && <Faser />}
         {rute.type === "oversikt" && <Oversikt />}
       </main>
     </>
